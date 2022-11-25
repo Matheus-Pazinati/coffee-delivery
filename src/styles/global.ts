@@ -6,4 +6,18 @@ export const GlobalStyled = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
   }
+
+  body {
+    background-color: ${({theme}) => theme.background};
+    color: ${({theme}) => theme['base-text']};
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
 `
