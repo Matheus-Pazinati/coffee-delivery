@@ -1,5 +1,17 @@
+import { Logo } from "../Logo";
+
+import {MapPin } from 'phosphor-react'
+
 export function Menu() {
   return (
-    <h1>menu</h1>
+    <section>
+      <Logo />
+      <div> 
+        <div>
+          <MapPin size={22} />
+          <span>São Paulo, SP</span>
+        </div>
+      </div>
+    </section>
   )
 }
