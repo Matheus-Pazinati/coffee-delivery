@@ -1,12 +1,15 @@
 import { CoffeeCard } from "../CoffeeCard";
 
+import { CoffeeList, CoffeeMenuContainer } from "./styles";
+
 export function CoffeeMenu() {
   return (
-    <div>
+    <CoffeeMenuContainer>
       <h2>Nossos cafés</h2>
-      <ul>
+      <CoffeeList>
         <CoffeeCard />
-      </ul>
-    </div>
+        <CoffeeCard />
+      </CoffeeList>
+    </CoffeeMenuContainer>
   )
 }
