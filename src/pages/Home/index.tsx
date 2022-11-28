@@ -1,8 +1,11 @@
-import { Menu } from "../../components/Menu";
+import { CoffeeMenu } from "./components/CoffeeMenu";
 import { Header } from "./components/Header";
 
 export function Home() {
   return (
-    <Header />
+    <main>
+      <Header />
+      <CoffeeMenu />
+    </main>
   )
 }
