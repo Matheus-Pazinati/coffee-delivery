@@ -58,7 +58,6 @@ export const HeaderContentContainer = styled.div`
     h1 {
       font-size: 2rem;
       color: ${({theme}) => theme["base-title"]};
-      font-family: 'Baloo 2', sans-serif;
       line-height: 1.3;
       font-weight: 800;
 
