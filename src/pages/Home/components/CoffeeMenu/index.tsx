@@ -9,6 +9,12 @@ export function CoffeeMenu() {
       <CoffeeList>
         <CoffeeCard />
         <CoffeeCard />
+        <CoffeeCard />
+        <CoffeeCard />
+        <CoffeeCard />
+        <CoffeeCard />
+        <CoffeeCard />
+        <CoffeeCard />
       </CoffeeList>
     </CoffeeMenuContainer>
   )

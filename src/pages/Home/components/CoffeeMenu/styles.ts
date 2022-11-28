@@ -4,6 +4,13 @@ export const CoffeeMenuContainer = styled.div`
   margin-top: 2rem;
   padding: 2rem;
 
+  @media (min-width: 750px) {
+    padding: 2rem 5rem;
+  }
+  @media (min-width: 1350px) {
+    padding: 2rem 10rem;
+  }
+
   h2 {
     font-family: 'Baloo 2', sans-serif;
     font-size: 2rem;
@@ -17,4 +24,12 @@ export const CoffeeList = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+
+  @media (min-width: 750px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: 1350px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `
