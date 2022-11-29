@@ -18,6 +18,10 @@ export const CoffeeCardContainer = styled.li`
     font-weight: 700;
   }
 
+  img {
+    margin-top: -2.5rem;
+  }
+
   h3 {
     font-size: 1.25rem;
     font-weight: 700;
@@ -46,8 +50,6 @@ export const CoffeeCardBuy = styled.div`
       font-size: 1.5rem;
     }
   }
-
-
 `
 
 export const CoffeeCardQuantity = styled.div`
