@@ -3,12 +3,6 @@ import styled from "styled-components";
 import bannerImg from '../../../../assets/cd-banner.png'
 import bannerBackground from '../../../../assets/cd-banner-background.png'
 
-type IconBackgroundColors = 'yellow' | 'yellow-dark' | 'purple' | 'base-text'
-
-interface HeaderIconsProps {
-  backgroundVariant: IconBackgroundColors
-}
-
 export const HeaderContainer = styled.header`
   padding: 2rem 0;
   background: url(${bannerBackground});
@@ -77,31 +71,16 @@ export const HeaderContentContainer = styled.div`
   }
 
   ul {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 
-      @media (min-width: 1350px) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        column-gap: 0;
-        row-gap: 1.25rem;
-       }
-
-      li {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
+    @media (min-width: 1350px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      column-gap: 0;
+      row-gap: 1.25rem;
     }
-`
-export const HeaderIcon = styled.i<HeaderIconsProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) => props.theme[`${props.backgroundVariant}` as IconBackgroundColors]};
-  color: ${({theme}) => theme.background};
-  padding: 0.5rem;
-  border-radius: 50%;
+  }
 `

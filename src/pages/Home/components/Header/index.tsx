@@ -1,6 +1,8 @@
 import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
 
-import { BannerImage, HeaderContainer, HeaderContentContainer, HeaderIcon } from './styles'
+import { BenefitTag } from './components/BenefitTag'
+
+import { BannerImage, HeaderContainer, HeaderContentContainer } from './styles'
 
 export function Header() {
   return (
@@ -12,30 +14,29 @@ export function Header() {
           <p>Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora</p>
         </div>
         <ul>
-          <li>
-            <HeaderIcon backgroundVariant="yellow-dark">
-              <ShoppingCart size={16} weight={'fill'} />
-            </HeaderIcon>
-            <span>Compra simples e segura</span>
-          </li>
-          <li>
-            <HeaderIcon backgroundVariant="base-text">
-              <Package size={16} weight={'fill'} />
-            </HeaderIcon>
-            <span>Embalagem mantém o café intacto</span>
-          </li>
-          <li>
-            <HeaderIcon backgroundVariant="yellow">
-              <Timer size={16} weight={'fill'} />
-            </HeaderIcon>
-            <span>Entrega rápida e rastreada</span>
-          </li>
-          <li>
-            <HeaderIcon backgroundVariant="purple">
-              <Coffee size={16} weight={'fill'}  />
-            </HeaderIcon>
-            <span>O café chega quentinho até você</span>
-          </li>
+          <BenefitTag 
+            Icon={ShoppingCart} 
+            content="Compra simples e segura" 
+            bgColor='yellow-dark'
+          />
+
+          <BenefitTag 
+            Icon={Timer} 
+            content="Entrega rápida e rastreada" 
+            bgColor='yellow'
+          />
+
+          <BenefitTag 
+            Icon={Package} 
+            content="Embalagem mantém o café intacto" 
+            bgColor='base-text'
+          />
+
+          <BenefitTag 
+            Icon={Coffee} 
+            content="O café chega quentinho até você" 
+            bgColor='purple'
+          />
         </ul>
       </HeaderContentContainer>
     </HeaderContainer>
