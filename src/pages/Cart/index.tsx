@@ -1,3 +1,10 @@
+import { CartForm } from "./components/CartForm";
+
 export function Cart() {
-  return <h1>Cart</h1>
+  return (
+    <section>
+      <h2>Complete seu pedido</h2>
+      <CartForm />
+    </section>
+  )
 }
