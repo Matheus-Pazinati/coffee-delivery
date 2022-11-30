@@ -1,5 +1,8 @@
 import { ShoppingCartSimple } from "phosphor-react";
-import { CoffeeCardBuy, CoffeeCardCartButton, CoffeeCardContainer, CoffeeCardQuantity } from "./styles";
+
+import { CoffeeQuantityButton } from "../../../../components/CoffeeQuantityButton";
+
+import { CoffeeCardBuy, CoffeeCardCartButton, CoffeeCardContainer} from "./styles";
 
 export function CoffeeCard() {
   return (
@@ -10,11 +13,7 @@ export function CoffeeCard() {
       <p>O tradicional café feito com água quente e grãos moídos</p>
       <CoffeeCardBuy>
         <p>R$ <span>9,90</span></p>
-        <CoffeeCardQuantity>
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
-        </CoffeeCardQuantity>
+        <CoffeeQuantityButton />
         <CoffeeCardCartButton>
           <ShoppingCartSimple size={22} weight={'fill'} color='#FAFAFA' />
         </CoffeeCardCartButton>
