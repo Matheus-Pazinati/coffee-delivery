@@ -18,7 +18,7 @@ export const CoffeeMenuContainer = styled.div`
   }
 `
 
-export const CoffeeList = styled.ul`
+export const CoffeeItems = styled.ul`
   margin-top: 2.5rem;
   display: grid;
   grid-template-columns: 1fr;
