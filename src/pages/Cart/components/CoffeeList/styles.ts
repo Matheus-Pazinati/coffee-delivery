@@ -45,9 +45,13 @@ export const CoffeeListContent = styled.div`
     font-size: 0.875rem;
 
     @media (min-width: 750px) {
-    width: 50%;
-    margin: 0 auto;
-  }
+      width: 50%;
+      margin: 0 auto;
+    }
+    
+    @media (min-width: 1350px) {
+      width: 100%;
+    }
   }
 `
 
