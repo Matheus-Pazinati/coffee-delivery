@@ -53,19 +53,20 @@ export function AdressForm() {
             className="ToggleContainer"
             type="single"
             aria-label="Escolha do método de pagamento"
+            defaultValue='credit'
           >
             <ToggleGroup.Item className='ToggleItem' value='credit' aria-label='Cartão de crédito'>
-              <CreditCard />
+              <CreditCard size={16} color={colors.purple} />
               Cartão de Crédito
             </ToggleGroup.Item>
 
             <ToggleGroup.Item className='ToggleItem' value='debt' aria-label='Cartão de débito'>
-              <Bank />
+              <Bank size={16} color={colors.purple} />
               Cartão de Débito
             </ToggleGroup.Item>
 
             <ToggleGroup.Item className='ToggleItem' value='money' aria-label='Dinheiro'>
-              <Money />
+              <Money size={16} color={colors.purple} />
               Dinheiro
             </ToggleGroup.Item>
           </ToggleGroup.Root>

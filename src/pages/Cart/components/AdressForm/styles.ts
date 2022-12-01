@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  margin-top: 2.5rem;
+  margin: 2.5rem 0;
 
   @media (min-width: 750px) {
     padding: 0 5rem;
@@ -29,6 +29,7 @@ export const FormContainer = styled.div`
     fieldset {
       background-color: ${({theme}) => theme["base-card"]};
       padding: 2rem;
+      border-radius: 6px;
       @media (min-width: 750px) {
         padding: 2rem 2.5rem 1rem 2.5rem;
       }   
@@ -49,6 +50,39 @@ export const FormContainer = styled.div`
         span {
           font-size: 0.875rem;
         }
+      }
+
+      .ToggleContainer {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .ToggleItem {
+        padding: 1rem;
+        font-family: 'Roboto', sans-serif;
+        color: ${({theme}) => theme["base-text"]};
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background-color: ${({theme}) => theme["base-button"]};
+        border: none;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        &:hover {
+          background-color: ${({theme}) => theme["base-hover"]};
+        };
+        @media (min-width: 750px) {
+          flex: 1
+        };  
+      }
+
+      .ToggleItem[data-state="on"] {
+        background-color: ${({theme}) => theme["purple-light"]};
+        outline: 1.5px solid ${({theme}) => theme.purple};
       }
     }
 
@@ -78,6 +112,7 @@ export const FormContainer = styled.div`
     }
   }
 `
+
 export const FormInputContainer = styled.div`
     @media (min-width: 750px) {
       display: flex;
