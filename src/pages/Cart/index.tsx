@@ -1,10 +1,11 @@
-import { CartForm } from "./components/CartForm";
+import { AdressForm } from "./components/AdressForm";
+import { CoffeeList } from "./components/CoffeeList";
 
 export function Cart() {
   return (
-    <section>
-      <h2>Complete seu pedido</h2>
-      <CartForm />
-    </section>
+    <main>
+      <AdressForm />
+      <CoffeeList />
+    </main>
   )
 }

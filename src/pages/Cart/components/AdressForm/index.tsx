@@ -2,10 +2,11 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react'
 
-export function CartForm() {
+export function AdressForm() {
   return (
     <div>
-      <form>
+      <h2>Complete seu pedido</h2>
+      <form id="addressForm">
         <fieldset>
           <legend>
             <MapPinLine />
