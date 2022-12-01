@@ -8,7 +8,7 @@ export const FormContainer = styled.div`
   }
 
   @media (min-width: 1350px) {
-    padding: 0 10rem;
+    padding: 0;
   }
   h2 {
     font-size: 1.125rem;
@@ -66,12 +66,13 @@ export const FormContainer = styled.div`
         color: ${({theme}) => theme["base-text"]};
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.35rem;
         background-color: ${({theme}) => theme["base-button"]};
         border: none;
         border-radius: 6px;
         margin-bottom: 1rem;
         cursor: pointer;
+        font-size: 0.75rem;
         &:hover {
           background-color: ${({theme}) => theme["base-hover"]};
         };

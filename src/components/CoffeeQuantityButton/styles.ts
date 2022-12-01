@@ -11,10 +11,8 @@ export const CoffeeCardQuantity = styled.div`
   max-width: 4.5rem;
 
   button {
-    border: none;
     background-color: transparent;
     color: ${({theme}) => theme.purple};
-    cursor: pointer;
 
     &:hover {
       color: ${({theme}) => theme["purple-dark"]};
@@ -23,7 +21,6 @@ export const CoffeeCardQuantity = styled.div`
 
   input {
     color: ${({theme}) => theme["base-title"]};
-    border: none;
     background-color: transparent;
     font-size: 1rem;
     width: 1.25rem;

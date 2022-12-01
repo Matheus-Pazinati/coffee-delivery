@@ -56,11 +56,9 @@ export const CoffeeCardCartButton = styled.button`
   padding: 0.5rem;
   border-radius: 6px;
   background-color: ${({theme}) => theme["purple-dark"]};
-  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 
   &:hover {
     background-color: ${({theme}) => theme.purple};

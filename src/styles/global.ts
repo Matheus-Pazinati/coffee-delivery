@@ -28,4 +28,13 @@ export const GlobalStyled = createGlobalStyle`
   fieldset {
     border: none;
   }
+
+  button {
+    border: none;
+    cursor: pointer;
+  }
+
+  input {
+    border: none;
+  }
 `
