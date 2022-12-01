@@ -1,36 +1,51 @@
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
+import { useTheme } from 'styled-components';
+
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react'
 
+import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall } from './styles';
+
 export function AdressForm() {
+  const colors = useTheme()
   return (
-    <div>
+    <FormContainer>
       <h2>Complete seu pedido</h2>
       <form id="addressForm">
         <fieldset>
-          <legend>
-            <MapPinLine />
-            Endereço de Entrega <br />
-            Informe o endereço onde deseja receber seu pedido
-          </legend>
-          <input type="text" placeholder='CEP' />
-          <input type="text" placeholder='Rua' />
-          <input type="number" placeholder='Número' />
-          <input type="text" placeholder='Complemento' />
-          <input type="text" placeholder='Bairro' />
-          <input type="text" placeholder='Cidade' />
-          <select name="uf" id="uf">
-            <option value="SP">SP</option>
-            <option value="RJ">RJ</option>
-            <option value="MG">MG</option>
-          </select>
+          <h3>
+            <MapPinLine size={22} color={colors['yellow-dark']} />
+            <div>
+              Endereço de Entrega 
+              <span>Informe o endereço onde deseja receber seu pedido</span>
+            </div>
+          </h3>
+          <div>
+            <FormInputSmall type="text" placeholder='CEP' />
+            <FormInputBase type="text" placeholder='Rua' />
+            <FormInputContainer>
+              <FormInputSmall type="number" placeholder='Número' />
+              <FormInputBase type="text" placeholder='Complemento' />
+            </FormInputContainer>
+            <FormInputContainer>
+              <FormInputSmall type="text" placeholder='Bairro' />
+              <FormInputBase type="text" placeholder='Cidade' />
+              <select name="uf" id="uf">
+                <option value="SP">SP</option>
+                <option value="RJ">RJ</option>
+                <option value="MG">MG</option>
+              </select>
+            </FormInputContainer>
+          </div>
         </fieldset>
         <fieldset>
-          <legend>
-            <CurrencyDollar />
-            Pagamento <br />
-            O pagamento é feito na entrega. Escolha a forma que deseja pagar
-          </legend>
+          <h3>
+            <CurrencyDollar size={22} color={colors.purple} />
+            <div>
+             Pagamento
+             <span>O pagamento é feito na entrega. Escolha a forma que deseja pagar</span>
+            </div>
+          </h3>
           <ToggleGroup.Root
             className="ToggleContainer"
             type="single"
@@ -53,6 +68,6 @@ export function AdressForm() {
           </ToggleGroup.Root>
         </fieldset>
       </form>
-    </div>
+    </FormContainer>
   )
 }
