@@ -3,17 +3,16 @@ import styled from "styled-components";
 export const CoffeeCardQuantity = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: space-between;
   padding: 0.5rem;
   border-radius: 6px;
   background-color: ${({theme}) => theme["base-button"]};
   margin: 0 0.5rem 0 1rem;
+  max-width: 4.5rem;
 
   button {
     border: none;
     background-color: transparent;
-    font-size: 1.5rem;
-    width: 1rem;
     color: ${({theme}) => theme.purple};
     cursor: pointer;
 
@@ -26,7 +25,8 @@ export const CoffeeCardQuantity = styled.div`
     color: ${({theme}) => theme["base-title"]};
     border: none;
     background-color: transparent;
-    max-width: 1.25rem;
+    font-size: 1rem;
+    width: 1.25rem;
     outline: none;
     text-align: center;
   }

@@ -1,11 +1,16 @@
+import { Minus, Plus } from "phosphor-react";
 import { CoffeeCardQuantity } from "./styles";
 
 export function CoffeeQuantityButton() {
   return (
     <CoffeeCardQuantity>
-      <button>-</button>
+      <button>
+        <Minus size={16} />
+      </button>
       <input type="number" readOnly value={1} />
-      <button>+</button>
+      <button>
+        <Plus size={16} />
+      </button>
     </CoffeeCardQuantity>
   )
 }
