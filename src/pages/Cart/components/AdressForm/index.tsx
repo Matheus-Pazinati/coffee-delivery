@@ -25,7 +25,10 @@ export function AdressForm() {
             <FormInputBase type="text" placeholder='Rua' />
             <FormInputContainer>
               <FormInputSmall type="number" placeholder='Número' />
-              <FormInputBase type="text" placeholder='Complemento' />
+              <label htmlFor="Complemento">
+                <FormInputBase type="text" id='Complemento' placeholder='Complemento' />
+                <i>Opcional</i>
+              </label>
             </FormInputContainer>
             <FormInputContainer>
               <FormInputSmall type="text" placeholder='Bairro' />

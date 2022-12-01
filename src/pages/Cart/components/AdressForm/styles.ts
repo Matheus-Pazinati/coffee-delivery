@@ -31,7 +31,7 @@ export const FormContainer = styled.div`
       padding: 2rem;
       @media (min-width: 750px) {
         padding: 2rem 2.5rem 1rem 2.5rem;
-  }
+      }   
       h3 {
         color: ${({theme}) => theme["base-subtitle"]};
         font-family: 'Roboto', sans-serif;
@@ -60,6 +60,21 @@ export const FormContainer = styled.div`
       -webkit-appearance: none;
       color: ${({theme}) => theme["base-label"]};
       margin-bottom: 1rem;
+    }
+
+    label {
+      position: relative;
+      display: flex; 
+      flex: 1;
+    }
+
+    i {
+      position: absolute;
+      right: 0.75rem;
+      top: 25%;
+      font-size: 0.75rem;
+      color: ${({theme}) => theme["base-label"]};
+      font-style: italic;
     }
   }
 `
