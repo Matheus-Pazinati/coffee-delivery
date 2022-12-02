@@ -12,7 +12,7 @@ export function CoffeeCard() {
       <h3>Expresso Tradicional</h3>
       <p>O tradicional café feito com água quente e grãos moídos</p>
       <CoffeeCardBuy>
-        <p>R$ <span>9,90</span></p>
+        <p className="CoffeePrice">R$ <span>9,90</span></p>
         <CoffeeQuantityButton />
         <CoffeeCardCartButton>
           <ShoppingCartSimple size={22} weight={'fill'} color='#FAFAFA' />

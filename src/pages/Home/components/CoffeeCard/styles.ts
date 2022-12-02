@@ -46,8 +46,9 @@ export const CoffeeCardBuy = styled.div`
   display: flex;
   align-items: center;
 
-  p {
+  .CoffeePrice {
     margin: 0;
+    margin-right: 1.5rem;
     color: ${({theme}) => theme["base-text"]};
     span {
       font-family: 'Baloo 2', sans-serif;
@@ -58,6 +59,7 @@ export const CoffeeCardBuy = styled.div`
 `
 
 export const CoffeeCardCartButton = styled.button`
+  margin-left: 0.5rem;
   padding: 0.5rem;
   border-radius: 6px;
   background-color: ${({theme}) => theme["purple-dark"]};
