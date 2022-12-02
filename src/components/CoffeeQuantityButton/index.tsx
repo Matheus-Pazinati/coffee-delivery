@@ -7,7 +7,7 @@ export function CoffeeQuantityButton() {
       <button>
         <Minus size={16} />
       </button>
-      <input type="number" readOnly value={1} />
+      <span>1</span>
       <button>
         <Plus size={16} />
       </button>

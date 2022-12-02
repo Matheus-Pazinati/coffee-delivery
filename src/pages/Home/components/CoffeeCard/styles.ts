@@ -8,6 +8,10 @@ export const CoffeeCardContainer = styled.li`
   flex-direction: column;
   align-items: center;
 
+  @media (min-width: 1350px) {
+    padding: 1.25rem;
+  }
+
   label {
     margin: 0.75rem 0 1rem 0;
     padding: 0.25rem 0.5rem;
@@ -16,6 +20,7 @@ export const CoffeeCardContainer = styled.li`
     border-radius: 100px;
     font-size: 0.75rem;
     font-weight: 700;
+    text-transform: uppercase;
   }
 
   img {
