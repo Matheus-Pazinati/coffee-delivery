@@ -10,16 +10,6 @@ export const FormContainer = styled.div`
   @media (min-width: 1350px) {
     padding: 0;
   }
-  h2 {
-    font-size: 1.125rem;
-    font-weight: 700;
-    padding-left: 2rem;
-    margin-bottom: 1rem;
-
-    @media (min-width: 750px) {
-     padding-left: 0 ;
-    }
-  }
 
   form {
     display: flex;

@@ -8,3 +8,14 @@ export const CartContainer = styled.main`
     padding: 0 10rem;
   };  
 `
+
+export const FormTitle = styled.h2`
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: 750px) {
+    padding-left: 0;
+  }
+`

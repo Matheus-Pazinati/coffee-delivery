@@ -1,24 +1,13 @@
 import styled from "styled-components";
 
 export const CoffeeListContainer = styled.div`
+  margin-top: 2.5rem;
   @media (min-width: 750px) {
     padding: 0 5rem;
   }
   @media (min-width: 1350px) {
     padding: 0;
     flex: 1;
-  }
-  
-  h2 {
-    font-size: 1.125rem;
-    font-weight: 700;
-    padding-left: 2rem;
-    margin-bottom: 1rem;
-    margin-top: 2.5rem;
-
-    @media (min-width: 750px) {
-     padding-left: 0;
-    }
   }
 `
 

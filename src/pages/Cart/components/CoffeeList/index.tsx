@@ -1,3 +1,4 @@
+import { FormTitle } from "../../styles";
 import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
 
 import { CoffeeListContainer, CoffeeListContent, CoffeeListPrice } from "./styles";
@@ -5,7 +6,7 @@ import { CoffeeListContainer, CoffeeListContent, CoffeeListPrice } from "./style
 export function CoffeeList() {
   return (
     <CoffeeListContainer>
-      <h2>Cafés selecionados</h2>
+      <FormTitle>Cafés selecionados</FormTitle>
       <CoffeeListContent>
         <ul>
           <BoughtCoffeeCard />

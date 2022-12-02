@@ -5,12 +5,13 @@ import { useTheme } from 'styled-components';
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react'
 
 import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall } from './styles';
+import { FormTitle } from '../../styles';
 
 export function AdressForm() {
   const colors = useTheme()
   return (
     <FormContainer>
-      <h2>Complete seu pedido</h2>
+      <FormTitle>Complete seu pedido</FormTitle>
       <form id="addressForm">
         <fieldset>
           <h3>
