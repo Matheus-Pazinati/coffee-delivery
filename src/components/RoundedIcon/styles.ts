@@ -5,12 +5,6 @@ interface HeaderIconsProps {
   backgroundVariant: IconBackgroundColors
 }
 
-export const BenefitTagContainer = styled.li`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-`
-
 export const HeaderIcon = styled.i<HeaderIconsProps>`
   display: flex;
   align-items: center;

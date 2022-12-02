@@ -82,5 +82,10 @@ export const HeaderContentContainer = styled.div`
       column-gap: 0;
       row-gap: 1.25rem;
     }
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
   }
 `
