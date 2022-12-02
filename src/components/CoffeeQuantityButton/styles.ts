@@ -7,7 +7,7 @@ export const CoffeeCardQuantity = styled.div`
   gap: 0.25rem;
   border-radius: 6px;
   background-color: ${({theme}) => theme["base-button"]};
-  margin: 0 0.5rem 0 1rem;
+  max-width: 4.5rem;
 
   button {
     background-color: transparent;

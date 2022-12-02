@@ -10,6 +10,8 @@ export function CoffeeList() {
       <CoffeeListContent>
         <ul>
           <BoughtCoffeeCard />
+          <BoughtCoffeeCard />
+          <BoughtCoffeeCard />
         </ul>
         <CoffeeListPrice>
           <p>

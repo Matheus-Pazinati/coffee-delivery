@@ -21,7 +21,7 @@ export const CoffeeListContent = styled.div`
 
   @media (min-width: 750px) {
      border-radius: 6px 44px;
-     padding: 2.5rem;
+     padding: 1rem 2.5rem;
   }
 
   .OrderConfirm {
@@ -40,6 +40,10 @@ export const CoffeeListContent = styled.div`
     
     @media (min-width: 1350px) {
       width: 100%;
+    }
+
+    &:hover {
+      background-color: ${({theme}) => theme["yellow-dark"]};
     }
   }
 `
