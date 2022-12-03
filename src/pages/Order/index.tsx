@@ -2,18 +2,17 @@ import { RoundedIcon } from "../../components/RoundedIcon";
 
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 
-import { useTheme } from "styled-components";
-
 import confirmImg from '../../assets/cd-delivery-confirmed.png'
 
+import { OrderContainer, OrderContent, OrderStatus } from "./styles";
+
 export function Order() {
-  const colors = useTheme()
   return (
-    <section>
-      <div>
+    <OrderContainer>
+      <OrderContent>
         <h2>Uhu! Pedido confirmado</h2>
-        <p>Agora é só aguardar que logo o café chegará até você</p>
-        <div>
+        <p className="OrderSubtitle">Agora é só aguardar que logo o café chegará até você</p>
+        <OrderStatus>
           <div>
             <RoundedIcon Icon={MapPin} bgColor={'purple'} />
             <p>
@@ -34,9 +33,9 @@ export function Order() {
               <span>Cartão de Crédito</span>
             </p>
           </div>
-        </div>
-      </div>
+        </OrderStatus>
+      </OrderContent>
       <img src={confirmImg} alt="" />
-    </section>
+    </OrderContainer>
   )
 }
