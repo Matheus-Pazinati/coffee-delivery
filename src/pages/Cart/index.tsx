@@ -7,9 +7,8 @@ import { EmptyCard } from "./components/EmptyCard";
 export function Cart() {
   return (
     <CartContainer>
-      {/* <AdressForm /> */}
-      {/* <CoffeeList /> */}
-      <EmptyCard />
+      <AdressForm />
+      <CoffeeList />
     </CartContainer>
   )
 }

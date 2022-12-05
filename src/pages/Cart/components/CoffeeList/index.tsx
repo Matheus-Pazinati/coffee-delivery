@@ -1,9 +1,12 @@
 import { FormTitle } from "../../styles";
-import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
-
 import { CoffeeListContainer, CoffeeListContent, CoffeeListPrice } from "./styles";
 
+import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
+
+import { useNavigate } from 'react-router-dom'
+
 export function CoffeeList() {
+  const navigate = useNavigate()
   return (
     <CoffeeListContainer>
       <FormTitle>Cafés selecionados</FormTitle>
@@ -27,7 +30,16 @@ export function CoffeeList() {
             <span>R$ 33,20</span>
           </p>
         </CoffeeListPrice>
-        <button type="submit" form="addressForm" className="OrderConfirm">Confirmar pedido</button>
+        <button 
+        type="submit" 
+        form="addressForm" 
+        className="OrderConfirm"
+        onClick={() => {
+          return navigate('/order')
+        }}
+        >
+          Confirmar pedido
+        </button>
       </CoffeeListContent>
     </CoffeeListContainer>
   )
