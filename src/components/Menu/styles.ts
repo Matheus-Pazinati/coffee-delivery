@@ -27,10 +27,26 @@ export const CartContainer = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     &:hover {
       color: ${({theme}) => theme.yellow};
     }
+  }
+
+  .CartLength {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: ${({theme}) => theme['yellow-dark']};
+    color: ${({theme}) => theme.white};
   }
 `
 

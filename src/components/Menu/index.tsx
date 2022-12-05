@@ -26,6 +26,7 @@ export function Menu() {
         <div>
           <Link to={"/cart"}>
             <ShoppingCart size={22} weight={"fill"} />
+            <div className="CartLength">3</div>
           </Link>
         </div>
       </CartContainer>
