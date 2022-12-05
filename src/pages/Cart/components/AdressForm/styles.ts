@@ -51,7 +51,7 @@ export const FormContainer = styled.div`
       }
 
       .ToggleItem {
-        padding: 1rem;
+        padding: 1rem 0.5rem;
         font-family: 'Roboto', sans-serif;
         color: ${({theme}) => theme["base-text"]};
         display: flex;
@@ -62,7 +62,7 @@ export const FormContainer = styled.div`
         border-radius: 6px;
         margin-bottom: 1rem;
         cursor: pointer;
-        font-size: 0.75rem;
+        font-size: 0.875rem;
         &:hover {
           background-color: ${({theme}) => theme["base-hover"]};
         };
