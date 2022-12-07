@@ -3,7 +3,7 @@ import { CoffeeCard } from "../CoffeeCard";
 
 import { CoffeeItems, CoffeeMenuContainer } from "./styles";
 
-export interface CoffeeCardProps {
+export interface CoffeeProps {
   id: string;
   name: string;
   image: string;
@@ -15,13 +15,13 @@ export interface CoffeeCardProps {
 export function CoffeeMenu() {
   const url = "https://my-json-server.typicode.com/Matheus-Pazinati/coffee-delivery-json-db/coffee";
 
-  const [coffee, setCoffee] = useState<CoffeeCardProps[]>([])
+  const [coffees, setCoffees] = useState<CoffeeProps[]>([])
 
   useEffect(() => {
     async function fetchCoffeMenuData() {
       const response = await fetch(url)
-      const jsonResponse = await response.json() as CoffeeCardProps[]
-      setCoffee(jsonResponse)
+      const jsonResponse = await response.json() as CoffeeProps[]
+      setCoffees(jsonResponse)
     }
 
     fetchCoffeMenuData()
@@ -31,14 +31,11 @@ export function CoffeeMenu() {
     <CoffeeMenuContainer>
       <h2>Nossos cafés</h2>
       <CoffeeItems>
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
+        {coffees.map((coffee) => {
+          return (
+            <CoffeeCard data={coffee} />
+          )
+        })}
       </CoffeeItems>
     </CoffeeMenuContainer>
   )

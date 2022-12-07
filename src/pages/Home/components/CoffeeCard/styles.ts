@@ -7,6 +7,7 @@ export const CoffeeCardContainer = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 
   @media (min-width: 1350px) {
     padding: 1.25rem;

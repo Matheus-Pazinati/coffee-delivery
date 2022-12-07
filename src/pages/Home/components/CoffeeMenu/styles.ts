@@ -22,10 +22,11 @@ export const CoffeeItems = styled.ul`
   margin-top: 2.5rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 3rem;
 
   @media (min-width: 750px) {
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 
   @media (min-width: 1350px) {
