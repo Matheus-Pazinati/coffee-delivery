@@ -19,8 +19,8 @@ export const CoffeeCardQuantity = styled.div`
 
   span {
     color: ${({theme}) => theme["base-title"]};
-    font-size: 1rem;
+    font-size: 0.875rem;
     text-align: center;
-    padding: 0 0.25rem;
+    padding: 0 0.15rem;
   }
 `

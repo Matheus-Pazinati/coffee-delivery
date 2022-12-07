@@ -33,7 +33,7 @@ export function CoffeeMenu() {
       <CoffeeItems>
         {coffees.map((coffee) => {
           return (
-            <CoffeeCard data={coffee} />
+            <CoffeeCard key={coffee.id} data={coffee} />
           )
         })}
       </CoffeeItems>

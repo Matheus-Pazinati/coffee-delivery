@@ -56,12 +56,12 @@ export const CoffeeCardBuy = styled.div`
 
   .CoffeePrice {
     margin: 0;
-    margin-right: 1.5rem;
+    margin-right: 1.25rem;
     color: ${({theme}) => theme["base-text"]};
     span {
       font-family: 'Baloo 2', sans-serif;
-      font-weight: 800;
-      font-size: 1.5rem;
+      font-weight: 700;
+      font-size: 1.25rem;
     }
   }
 `

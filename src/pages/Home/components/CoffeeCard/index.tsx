@@ -1,4 +1,5 @@
 import { ShoppingCartSimple } from "phosphor-react";
+import { useState } from "react";
 
 import { CoffeeQuantityButton } from "../../../../components/CoffeeQuantityButton";
 
@@ -10,17 +11,30 @@ interface CoffeeCardProps {
   data: CoffeeProps
 }
 
+export type CoffeeQuantityChangeMethods = 'increment' | 'decrement';
+
 export function CoffeeCard({data}: CoffeeCardProps) {
-  
-  const coffeePriceView = data.price.toString().replace('.', ',').concat('0')
+
+  const [coffeeQuantity, setCoffeeQuantity] = useState(1)
+
+  function changeCoffeeQuantity(type: CoffeeQuantityChangeMethods) {
+    if (type === "increment") {
+      return setCoffeeQuantity((state) => state + 1)
+    }
+
+    return setCoffeeQuantity((state) => state - 1)
+  }
+
+  const coffeeTotalPrice = data.price * coffeeQuantity
+  const coffeePriceView = coffeeTotalPrice.toFixed(1).replace('.', ',').concat('0')
 
   return (
     <CoffeeCardContainer>
       <img src={data.image} alt={`Xícara contendo o café ${data.name}`} />
       <div className="CoffeeTagsContainer">
-       {data.tags.map((tag) => {
+       {data.tags.map((tag, index) => {
         return (
-          <label>{tag}</label>
+          <label key={index}>{tag}</label>
         )
        })}
       </div>
@@ -28,7 +42,7 @@ export function CoffeeCard({data}: CoffeeCardProps) {
       <p>{data.description}</p>
       <CoffeeCardBuy>
         <p className="CoffeePrice">R$ <span>{coffeePriceView}</span></p>
-        <CoffeeQuantityButton />
+        <CoffeeQuantityButton quantity={coffeeQuantity} onQuantityChange={changeCoffeeQuantity} />
         <CoffeeCardCartButton>
           <ShoppingCartSimple size={22} weight={'fill'} color='#FAFAFA' />
         </CoffeeCardCartButton>
