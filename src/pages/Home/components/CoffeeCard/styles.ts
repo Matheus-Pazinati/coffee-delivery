@@ -12,16 +12,23 @@ export const CoffeeCardContainer = styled.li`
     padding: 1.25rem;
   }
 
-  label {
-    margin: 0.75rem 0 1rem 0;
-    padding: 0.25rem 0.5rem;
-    background-color: ${({theme}) => theme["yellow-light"]};
-    color: ${({theme}) => theme["yellow-dark"]};
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
+  .CoffeeTagsContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    label {
+      margin: 0.75rem 0 1rem 0;
+      padding: 0.25rem 0.5rem;
+      background-color: ${({theme}) => theme["yellow-light"]};
+      color: ${({theme}) => theme["yellow-dark"]};
+      border-radius: 100px;
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
   }
+
 
   img {
     margin-top: -2.5rem;
