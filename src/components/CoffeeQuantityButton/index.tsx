@@ -18,7 +18,7 @@ export function CoffeeQuantityButton({quantity, onQuantityChange}: CoffeeQuantit
     <CoffeeCardQuantity>
       <button
         onClick={() => {
-          if (quantity > 0) {
+          if (quantity > 1) {
             handleQuantityChange('decrement')
           }
         }}
@@ -29,8 +29,6 @@ export function CoffeeQuantityButton({quantity, onQuantityChange}: CoffeeQuantit
       <button
         onClick={() => {
           handleQuantityChange('increment')
-          console.log('clicou')
-          console.log(quantity)
         }}
       >
         <Plus size={16} />
