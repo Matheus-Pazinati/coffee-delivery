@@ -9,9 +9,10 @@ import { EmptyCart } from "./components/EmptyCart";
 
 export function Cart() {
   const { selectedCoffees } = useContext(SelectedCoffeesContext)
+  const hasCoffeeOnCart = selectedCoffees.length > 0
   return (
     <div>
-      {selectedCoffees.length > 0 ? 
+      {hasCoffeeOnCart ? 
         <CartContainer>
           <AdressForm />
           <CoffeeList />

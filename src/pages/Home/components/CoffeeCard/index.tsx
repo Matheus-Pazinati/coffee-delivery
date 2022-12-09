@@ -3,8 +3,11 @@ import { useState, useContext } from "react";
 import { ShoppingCartSimple } from "phosphor-react";
 import { CoffeeQuantityButton } from "../../../../components/CoffeeQuantityButton";
 import { CoffeeCardBuy, CoffeeCardCartButton, CoffeeCardContainer} from "./styles";
+import { toast } from "react-toastify";
 
 import { SelectedCoffee, SelectedCoffeesContext } from "../../../../context/CoffeeContext";
+
+import { convertCoffeePriceToString } from '../../../../functions/convertCoffeePriceToString'
 
 import { CoffeeProps } from '../CoffeeMenu/index'
 
@@ -28,16 +31,15 @@ export function CoffeeCard({data}: CoffeeCardProps) {
     return setCoffeeQuantity((state) => state - 1)
   }
 
-  const coffeeTotalPrice = data.price * coffeeQuantity
-  const coffeePriceView = coffeeTotalPrice.toFixed(1).replace('.', ',').concat('0')
-
   const coffeeSelected: SelectedCoffee = {
     id: data.id,
     image: data.image,
-    price: coffeeTotalPrice,
+    price: data.price,
     name: data.name,
     quantity: coffeeQuantity
   }
+
+  const coffeePriceString = convertCoffeePriceToString(data.price, coffeeQuantity)
 
   return (
     <CoffeeCardContainer>
@@ -52,10 +54,11 @@ export function CoffeeCard({data}: CoffeeCardProps) {
       <h3>{data.name}</h3>
       <p>{data.description}</p>
       <CoffeeCardBuy>
-        <p className="CoffeePrice">R$ <span>{coffeePriceView}</span></p>
+        <p className="CoffeePrice">R$ <span>{coffeePriceString}</span></p>
         <CoffeeQuantityButton quantity={coffeeQuantity} onQuantityChange={changeCoffeeQuantity} />
         <CoffeeCardCartButton onClick={() => {
           addNewCoffeeOnCart(coffeeSelected)
+          toast.success('Café adicionado ao carrinho! 🛒')
         }}>
           <ShoppingCartSimple size={22} weight={'fill'} color='#FAFAFA' />
         </CoffeeCardCartButton>
