@@ -7,7 +7,7 @@ export function coffeesReducer(state: SelectedCoffee[], action: any) {
   switch(action.type) {
     case ActionTypes.ADD_NEW_COFFEE: 
       return produce(state, (draft) => {
-        draft.push(action.payload)
+        draft.push(action.payload.coffee)
       })
   }
   return state

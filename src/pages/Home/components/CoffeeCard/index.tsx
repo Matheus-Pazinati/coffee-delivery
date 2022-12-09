@@ -1,11 +1,12 @@
-import { ShoppingCartSimple } from "phosphor-react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
+import { ShoppingCartSimple } from "phosphor-react";
 import { CoffeeQuantityButton } from "../../../../components/CoffeeQuantityButton";
+import { CoffeeCardBuy, CoffeeCardCartButton, CoffeeCardContainer} from "./styles";
+
+import { SelectedCoffee, SelectedCoffeesContext } from "../../../../context/CoffeeContext";
 
 import { CoffeeProps } from '../CoffeeMenu/index'
-
-import { CoffeeCardBuy, CoffeeCardCartButton, CoffeeCardContainer} from "./styles";
 
 interface CoffeeCardProps {
   data: CoffeeProps
@@ -14,6 +15,8 @@ interface CoffeeCardProps {
 export type CoffeeQuantityChangeMethods = 'increment' | 'decrement';
 
 export function CoffeeCard({data}: CoffeeCardProps) {
+
+  const { addNewCoffeeOnCart } = useContext(SelectedCoffeesContext)
 
   const [coffeeQuantity, setCoffeeQuantity] = useState(1)
 
@@ -27,6 +30,14 @@ export function CoffeeCard({data}: CoffeeCardProps) {
 
   const coffeeTotalPrice = data.price * coffeeQuantity
   const coffeePriceView = coffeeTotalPrice.toFixed(1).replace('.', ',').concat('0')
+
+  const coffeeSelected: SelectedCoffee = {
+    id: data.id,
+    image: data.image,
+    price: coffeeTotalPrice,
+    name: data.name,
+    quantity: coffeeQuantity
+  }
 
   return (
     <CoffeeCardContainer>
@@ -43,7 +54,9 @@ export function CoffeeCard({data}: CoffeeCardProps) {
       <CoffeeCardBuy>
         <p className="CoffeePrice">R$ <span>{coffeePriceView}</span></p>
         <CoffeeQuantityButton quantity={coffeeQuantity} onQuantityChange={changeCoffeeQuantity} />
-        <CoffeeCardCartButton>
+        <CoffeeCardCartButton onClick={() => {
+          addNewCoffeeOnCart(coffeeSelected)
+        }}>
           <ShoppingCartSimple size={22} weight={'fill'} color='#FAFAFA' />
         </CoffeeCardCartButton>
       </CoffeeCardBuy>

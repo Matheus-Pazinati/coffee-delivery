@@ -1,12 +1,16 @@
+import { useContext } from "react";
+import { useNavigate } from 'react-router-dom'
+
 import { FormTitle } from "../../styles";
 import { CoffeeListContainer, CoffeeListContent, CoffeeListPrice } from "./styles";
-
 import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
 
-import { useNavigate } from 'react-router-dom'
+import { SelectedCoffeesContext } from "../../../../context/CoffeeContext";
 
 export function CoffeeList() {
   const navigate = useNavigate()
+  const { selectedCoffees } = useContext(SelectedCoffeesContext)
+  console.log(selectedCoffees)
   return (
     <CoffeeListContainer>
       <FormTitle>Cafés selecionados</FormTitle>
