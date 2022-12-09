@@ -4,7 +4,7 @@ import { EmptyCartContainer } from './styles'
 
 import { Link } from 'react-router-dom'
 
-export function EmptyCard() {
+export function EmptyCart() {
   return (
     <EmptyCartContainer>
       <img src={emptyCartImg} alt="Desenho de um carrinho de compras vazio" />
