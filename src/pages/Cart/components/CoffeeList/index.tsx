@@ -7,10 +7,22 @@ import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
 
 import { SelectedCoffeesContext } from "../../../../context/CoffeeContext";
 
+import { convertCoffeePriceToString } from "../../../../functions/convertCoffeePriceToString";
+
 export function CoffeeList() {
   const navigate = useNavigate()
   const { selectedCoffees } = useContext(SelectedCoffeesContext)
-  console.log(selectedCoffees)
+
+  const deliveryValue = 3.50;
+  
+  const coffeesPrices = selectedCoffees.map((coffee) => {
+    return coffee.price * coffee.quantity
+  })
+
+  const coffeesTotalPrices = coffeesPrices.reduce((total, current) => {
+    return total + current
+  }, 0)
+
   return (
     <CoffeeListContainer>
       <FormTitle>Cafés selecionados</FormTitle>
@@ -23,7 +35,7 @@ export function CoffeeList() {
         <CoffeeListPrice>
           <p>
             Total de itens
-            <span>R$ 29,70</span>
+            <span>R$ { convertCoffeePriceToString(coffeesTotalPrices, 1) }</span>
           </p>
           <p>
             Entrega
@@ -31,7 +43,7 @@ export function CoffeeList() {
           </p>
           <p className="TotalPrice">
             Total
-            <span>R$ 33,20</span>
+            <span>R$ {convertCoffeePriceToString(coffeesTotalPrices + deliveryValue, 1)}</span>
           </p>
         </CoffeeListPrice>
         <button 

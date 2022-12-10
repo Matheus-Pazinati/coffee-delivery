@@ -7,7 +7,7 @@ export interface SelectedCoffee {
   image: string;
   name: string;
   quantity: number;
-  price: number
+  price: number;
 }
 
 interface SelectedCoffeesContextProps {
