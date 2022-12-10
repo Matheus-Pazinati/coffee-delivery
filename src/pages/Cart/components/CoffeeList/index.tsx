@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { FormTitle } from "../../styles";
 import { CoffeeListContainer, CoffeeListContent, CoffeeListPrice } from "./styles";
-import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
+import { BoughtCoffeeCard, CoffeeCartCardProps } from "../BoughtCoffeeCard";
 
 import { SelectedCoffeesContext } from "../../../../context/CoffeeContext";
 
@@ -19,7 +19,7 @@ export function CoffeeList() {
     return coffee.price * coffee.quantity
   })
 
-  const coffeesTotalPrices = coffeesPrices.reduce((total, current) => {
+  const totalPriceOfCoffees = coffeesPrices.reduce((total, current) => {
     return total + current
   }, 0)
 
@@ -28,14 +28,16 @@ export function CoffeeList() {
       <FormTitle>Cafés selecionados</FormTitle>
       <CoffeeListContent>
         <ul>
-          <BoughtCoffeeCard />
-          <BoughtCoffeeCard />
-          <BoughtCoffeeCard />
+          {selectedCoffees.map((coffee) => {
+            return (
+              <BoughtCoffeeCard data={coffee} key={coffee.id} />
+            )
+          })}
         </ul>
         <CoffeeListPrice>
           <p>
             Total de itens
-            <span>R$ { convertCoffeePriceToString(coffeesTotalPrices, 1) }</span>
+            <span>R$ { convertCoffeePriceToString(totalPriceOfCoffees, 1) }</span>
           </p>
           <p>
             Entrega
@@ -43,7 +45,7 @@ export function CoffeeList() {
           </p>
           <p className="TotalPrice">
             Total
-            <span>R$ {convertCoffeePriceToString(coffeesTotalPrices + deliveryValue, 1)}</span>
+            <span>R$ {convertCoffeePriceToString(totalPriceOfCoffees + deliveryValue, 1)}</span>
           </p>
         </CoffeeListPrice>
         <button 
