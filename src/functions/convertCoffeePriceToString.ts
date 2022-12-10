@@ -1,6 +1,6 @@
 export function convertCoffeePriceToString(price: number, quantity: number) {
   const coffeeTotalPrice = price * quantity
-  const coffeePriceView = coffeeTotalPrice.toFixed(1).replace('.', ',').concat('0')
+  const coffeePriceView = coffeeTotalPrice.toFixed(2).replace('.', ',')
 
   return coffeePriceView
 }
