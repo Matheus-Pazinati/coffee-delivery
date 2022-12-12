@@ -24,12 +24,13 @@ interface BoughtCoffeeCard {
 export function BoughtCoffeeCard({ data }: BoughtCoffeeCard) {
   const totalPriceOfCoffee = convertCoffeePriceToString(data.price, data.quantity)
 
-  const { incrementCoffeeQuantity } = useContext(SelectedCoffeesContext)
+  const { incrementCoffeeQuantity, decrementCoffeeQuantity } = useContext(SelectedCoffeesContext)
 
   function changeAmountOfCoffeesCart(type: CoffeeQuantityChangeMethods) {
     if (type === "increment") {
-      return (incrementCoffeeQuantity(data.id))
+      return incrementCoffeeQuantity(data.id)
     }
+    return decrementCoffeeQuantity(data.id)
   }
   return (
     <BoughtCoffeeCardContainer>

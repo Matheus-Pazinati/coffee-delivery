@@ -34,7 +34,7 @@ export function incrementCoffeeQuantityAction(id: string) {
   }
 }
 
-export function decrementCoffeeQuantityAction({ id }: SelectedCoffee) {
+export function decrementCoffeeQuantityAction(id: string) {
   return {
     type: ActionTypes.DECREMENT_COFFEE_QUANTITY,
     payload: {
