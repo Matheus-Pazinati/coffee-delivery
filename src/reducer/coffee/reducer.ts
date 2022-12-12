@@ -47,6 +47,19 @@ export function coffeesReducer(state: SelectedCoffee[], action: any) {
         draft[coffeeOnCartIndex].quantity -= 1;
       })
     }
+
+    case ActionTypes.REMOVE_COFFEE_CART: {
+      const coffeeOnCartIndex = state.findIndex((coffee) => {
+        return coffee.id === action.payload.id
+      })
+
+      return produce(state, (draft) => {
+        if (coffeeOnCartIndex < 0) {
+          return state
+        }
+        draft.splice(coffeeOnCartIndex, 1)
+      })
+    }
   }
   return state
 }

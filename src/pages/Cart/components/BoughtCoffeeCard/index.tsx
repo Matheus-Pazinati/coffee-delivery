@@ -24,7 +24,7 @@ interface BoughtCoffeeCard {
 export function BoughtCoffeeCard({ data }: BoughtCoffeeCard) {
   const totalPriceOfCoffee = convertCoffeePriceToString(data.price, data.quantity)
 
-  const { incrementCoffeeQuantity, decrementCoffeeQuantity } = useContext(SelectedCoffeesContext)
+  const { incrementCoffeeQuantity, decrementCoffeeQuantity, removeCoffeeFromCart } = useContext(SelectedCoffeesContext)
 
   function changeAmountOfCoffeesCart(type: CoffeeQuantityChangeMethods) {
     if (type === "increment") {
@@ -43,7 +43,12 @@ export function BoughtCoffeeCard({ data }: BoughtCoffeeCard) {
               quantity={data.quantity} 
               onQuantityChange={changeAmountOfCoffeesCart}
             />
-            <button className="CoffeeRemove">
+            <button 
+              className="CoffeeRemove"
+              onClick={() => {
+                removeCoffeeFromCart(data.id)
+              }}
+            >
               <Trash size={18} color={'#8047F8'} />
               Remover
             </button>

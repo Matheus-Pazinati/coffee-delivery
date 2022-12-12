@@ -16,7 +16,7 @@ export function addNewCoffeeOnCartAction(coffee: SelectedCoffee) {
   }
 }
 
-export function removeCoffeeFromCartAction({ id }: SelectedCoffee) {
+export function removeCoffeeFromCartAction(id: string) {
   return {
     type: ActionTypes.REMOVE_COFFEE_CART,
     payload: {
