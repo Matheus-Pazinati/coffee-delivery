@@ -22,6 +22,18 @@ export function coffeesReducer(state: SelectedCoffee[], action: any) {
       })
     }
 
+    case ActionTypes.INCREMENT_COFFEE_QUANTITY: {
+      const coffeeOnCartIndex = state.findIndex((coffee) => {
+        return coffee.id === action.payload.id
+      })
+
+      return produce(state, (draft) => {
+        if (coffeeOnCartIndex < 0) {
+          return state
+        }
+        draft[coffeeOnCartIndex].quantity += 1;
+      })
+    }
   }
   return state
 }

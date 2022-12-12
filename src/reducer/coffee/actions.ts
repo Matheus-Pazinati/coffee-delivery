@@ -16,7 +16,7 @@ export function addNewCoffeeOnCartAction(coffee: SelectedCoffee) {
   }
 }
 
-export function removeCoffeeFromCartAction({id}: SelectedCoffee) {
+export function removeCoffeeFromCartAction({ id }: SelectedCoffee) {
   return {
     type: ActionTypes.REMOVE_COFFEE_CART,
     payload: {
@@ -25,7 +25,7 @@ export function removeCoffeeFromCartAction({id}: SelectedCoffee) {
   }
 }
 
-export function incrementCoffeeQuantityAction({id}: SelectedCoffee) {
+export function incrementCoffeeQuantityAction(id: string) {
   return {
     type: ActionTypes.INCREMENT_COFFEE_QUANTITY,
     payload: {
@@ -34,7 +34,7 @@ export function incrementCoffeeQuantityAction({id}: SelectedCoffee) {
   }
 }
 
-export function decrementCoffeeQuantityAction({id}: SelectedCoffee) {
+export function decrementCoffeeQuantityAction({ id }: SelectedCoffee) {
   return {
     type: ActionTypes.DECREMENT_COFFEE_QUANTITY,
     payload: {
