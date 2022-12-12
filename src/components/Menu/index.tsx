@@ -6,8 +6,12 @@ import { CartContainer, LocationContainer, MenuContainer } from "./styles";
 import { useTheme } from "styled-components";
 
 import { Link } from 'react-router-dom'
+import { useContext } from "react";
+import { SelectedCoffeesContext } from "../../context/CoffeeContext";
 
 export function Menu() {
+
+  const { selectedCoffees } = useContext(SelectedCoffeesContext)
 
   const colors = useTheme()
   return (
@@ -26,7 +30,9 @@ export function Menu() {
         <div>
           <Link to={"/cart"}>
             <ShoppingCart size={22} weight={"fill"} />
-            <div className="CartLength">3</div>
+            {Boolean(selectedCoffees.length) && 
+              <div className="CartLength">{selectedCoffees.length}</div>
+            }
           </Link>
         </div>
       </CartContainer>
