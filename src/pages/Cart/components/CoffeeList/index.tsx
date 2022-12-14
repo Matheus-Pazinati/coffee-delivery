@@ -49,12 +49,12 @@ export function CoffeeList() {
           </p>
         </CoffeeListPrice>
         <button 
-        type="submit" 
-        form="addressForm" 
-        className="OrderConfirm"
-        onClick={() => {
-          return navigate('/order')
-        }}
+          type="submit" 
+          form="addressForm" 
+          className="OrderConfirm"
+          onClick={() => {
+            console.log('clicou')
+          }}
         >
           Confirmar pedido
         </button>

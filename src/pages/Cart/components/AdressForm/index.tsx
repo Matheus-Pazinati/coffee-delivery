@@ -2,10 +2,24 @@ import * as ToggleGroup from '@radix-ui/react-toggle-group';
 
 import { useTheme } from 'styled-components';
 
+import * as z from 'zod'
+
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react'
 
 import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall } from './styles';
 import { FormTitle } from '../../styles';
+
+const orderAddressValidationSchema = z.object({
+  cep: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }).regex(new RegExp('\d{3}[.\s]?\d{3}[.\s]?\d{3}[-.\s]?\d{2}'), { message: 'Este formato de CEP não é válido.' }),
+  street: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }),
+  homeNumber: z.number({ invalid_type_error: 'Este campo não permite este tipo de dado' }).min(1, { message: 'Este campo é de preenchimento obrigatório' }),
+  complement: z.string(),
+  district: z.string().min(1, {message: 'Este campo é de preenchimento obrigatório' }),
+  city: z.string({ invalid_type_error: 'Este campo não permite este tipo de dado' }).min(1, {message: 'Este campo é de preenchimento obrigatório' }),
+  state: z.string()
+})
+
+type OrderAddressSchemaProps = Zod.infer<typeof orderAddressValidationSchema>
 
 export function AdressForm() {
   const colors = useTheme()
