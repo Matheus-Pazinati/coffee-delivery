@@ -52,9 +52,6 @@ export function CoffeeList() {
           type="submit" 
           form="addressForm" 
           className="OrderConfirm"
-          onClick={() => {
-            console.log('clicou')
-          }}
         >
           Confirmar pedido
         </button>

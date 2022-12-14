@@ -85,6 +85,11 @@ export const FormContainer = styled.div`
       -webkit-appearance: none;
       color: ${({theme}) => theme["base-label"]};
       margin-bottom: 1rem;
+
+      &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
     }
 
     label {
