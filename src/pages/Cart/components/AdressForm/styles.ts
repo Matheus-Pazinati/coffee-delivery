@@ -77,21 +77,6 @@ export const FormContainer = styled.div`
       }
     }
 
-    select {
-      padding: 0.75rem;
-      background-color: ${({theme}) => theme["base-input"]};
-      border: 1px solid ${({theme}) => theme["base-button"]};
-      outline: none;
-      -webkit-appearance: none;
-      color: ${({theme}) => theme["base-label"]};
-      margin-bottom: 1rem;
-
-      &::-webkit-scrollbar {
-        width: 0px;
-        background: transparent;
-      }
-    }
-
     label {
       position: relative;
       display: flex; 
@@ -138,4 +123,8 @@ export const FormInputBase = styled.input`
 
 export const FormInputSmall = styled(FormInputBase)`
   width: 12.5rem;
+`
+
+export const FormInputVerySmall = styled(FormInputBase)`
+  width: 3.5rem
 `

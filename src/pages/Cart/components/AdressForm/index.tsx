@@ -8,8 +8,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react'
 
-import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall } from './styles';
+import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall, FormInputVerySmall } from './styles';
 import { FormTitle } from '../../styles';
+import { ChangeEvent, useState } from 'react';
 
 const orderAddressValidationSchema = z.object({
   cep: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }).regex(new RegExp(/\d{5}[-.\s]?\d{3}/), { message: 'Este formato de CEP é inválido' }),
@@ -17,20 +18,55 @@ const orderAddressValidationSchema = z.object({
   homeNumber: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }).refine((val) => Number(val)),
   complement: z.string(),
   district: z.string().min(1, {message: 'Este campo é de preenchimento obrigatório' }),
-  city: z.string({ invalid_type_error: 'Este campo não permite este tipo de dado' }).min(1, {message: 'Este campo é de preenchimento obrigatório' }),
-  state: z.string()
 })
 
 type OrderAddressSchemaProps = Zod.infer<typeof orderAddressValidationSchema>
 
-const abbreviationOfStates = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
-
 export function AdressForm() {
   const colors = useTheme()
 
-  const { register, handleSubmit, formState: { errors } } = useForm<OrderAddressSchemaProps>({
+  const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm<OrderAddressSchemaProps>({
     resolver: zodResolver(orderAddressValidationSchema)
   })
+
+  const cepApiDataEmpty = {
+    city: "",
+    uf: ""
+  }
+
+  const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
+
+  async function handleCepChange(event: ChangeEvent<HTMLInputElement>) {
+    clearErrors('cep')
+    const cep = event.target.value
+    const cepFormatted = cep.replace("-", " ").replace(".", " ").replaceAll(" ", "")
+
+    const cepFilled = cepFormatted.length === 8
+
+    if (cepFilled) {
+      try {
+        const cepApiResponse = await fetch(`https://viacep.com.br/ws/${cepFormatted}/json/`)
+        const cepApiJson = await cepApiResponse.json()
+
+        if (cepApiJson.erro) {
+          setCepApiData(cepApiDataEmpty)
+          setError('cep',  { type:"custom", message:"Este CEP não existe" })
+          return 
+        }
+    
+        setCepApiData({
+          city: cepApiJson.localidade,
+          uf: cepApiJson.uf
+        })
+      } catch (error) {
+          console.log(error)
+          throw new Error(`Erro: ${error}`)
+      }
+
+    } else {
+      setCepApiData(cepApiDataEmpty)
+    }
+  }
 
   function handleCreateNewOrder(data: OrderAddressSchemaProps) {
     console.log(data)
@@ -56,6 +92,7 @@ export function AdressForm() {
               type="text" 
               placeholder='CEP' 
               {...register('cep')}
+              onChange={handleCepChange}
             />
             {errors.cep && <p>{errors.cep.message}</p>}
             <FormInputBase 
@@ -91,21 +128,15 @@ export function AdressForm() {
               <FormInputBase 
                 type="text" 
                 placeholder='Cidade' 
-                {...register('city')}
+                readOnly
+                value={cepApiData.city}
               />
-              {errors.city && <p>{errors.city.message}</p>}
-              <div className='SelectContainer'>
-                <select 
-                  id="uf" 
-                  {...register('state')} 
-                >
-                  {abbreviationOfStates.map((abbreviation) => {
-                    return (
-                      <option value={abbreviation}>{abbreviation}</option>
-                    )
-                  })}
-                </select>
-              </div>
+              <FormInputVerySmall
+                type="text" 
+                value={cepApiData.uf} 
+                readOnly
+                placeholder='UF'
+              />
 
             </FormInputContainer>
           </div>
