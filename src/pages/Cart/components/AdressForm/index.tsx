@@ -37,13 +37,12 @@ export function AdressForm() {
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
   async function handleCepChange(event: ChangeEvent<HTMLInputElement>) {
-    clearErrors('cep')
     const cep = event.target.value
     const cepFormatted = cep.replace("-", " ").replace(".", " ").replaceAll(" ", "")
 
     const cepFilled = cepFormatted.length === 8
 
-    if (cepFilled) {
+    if (cepFilled && Boolean(Number(cepFormatted))) {
       try {
         const cepApiResponse = await fetch(`https://viacep.com.br/ws/${cepFormatted}/json/`)
         const cepApiJson = await cepApiResponse.json()
@@ -63,9 +62,12 @@ export function AdressForm() {
           throw new Error(`Erro: ${error}`)
       }
 
+      clearErrors('cep')
+
     } else {
       setCepApiData(cepApiDataEmpty)
     }
+
   }
 
   function handleCreateNewOrder(data: OrderAddressSchemaProps) {
