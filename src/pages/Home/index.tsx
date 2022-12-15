@@ -16,9 +16,8 @@ export function Home() {
         newestOnTop={false}
         closeOnClick
         rtl={false}
-        pauseOnFocusLoss
+        pauseOnHover={false}
         draggable
-        pauseOnHover
         theme="colored"
       />
     </main>
