@@ -10,13 +10,23 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-re
 
 import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall, FormInputVerySmall } from './styles';
 import { FormTitle } from '../../styles';
-import { ChangeEvent, useState } from 'react';
+import { FocusEvent, useState } from 'react';
 
 const orderAddressValidationSchema = z.object({
-  cep: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }).regex(new RegExp(/\d{5}[-.\s]?\d{3}/), { message: 'Este formato de CEP é inválido' }),
-  street: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }),
-  homeNumber: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }).refine((val) => Number(val)),
+  cep: z.string()
+  .min(1, { message: 'Este campo é de preenchimento obrigatório' })
+  .max(8, { message: 'Este formato de CEP é inválido' })
+  .regex(new RegExp(/\d{5}[-.\s]?\d{3}/), { message: 'Este formato de CEP é inválido' }),
+
+  street: z.string()
+  .min(1, { message: 'Este campo é de preenchimento obrigatório' }),
+
+  homeNumber: z.string()
+  .min(1, { message: 'Este campo é de preenchimento obrigatório' })
+  .refine((val) => Number(val)),
+
   complement: z.string(),
+
   district: z.string().min(1, {message: 'Este campo é de preenchimento obrigatório' }),
 })
 
@@ -25,7 +35,7 @@ type OrderAddressSchemaProps = Zod.infer<typeof orderAddressValidationSchema>
 export function AdressForm() {
   const colors = useTheme()
 
-  const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm<OrderAddressSchemaProps>({
+  const { register, handleSubmit, setError, setValue, clearErrors, formState: { errors } } = useForm<OrderAddressSchemaProps>({
     resolver: zodResolver(orderAddressValidationSchema)
   })
 
@@ -36,38 +46,34 @@ export function AdressForm() {
 
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
-  async function handleCepChange(event: ChangeEvent<HTMLInputElement>) {
+  async function handleCepBlur(event: FocusEvent<HTMLInputElement>) {
     const cep = event.target.value
-    const cepFormatted = cep.replace("-", " ").replace(".", " ").replaceAll(" ", "")
+    const cepFormatted = cep.replace(/\D/g, '');
 
-    const cepFilled = cepFormatted.length === 8
-
-    if (cepFilled && Boolean(Number(cepFormatted))) {
-      try {
-        const cepApiResponse = await fetch(`https://viacep.com.br/ws/${cepFormatted}/json/`)
-        const cepApiJson = await cepApiResponse.json()
-
-        if (cepApiJson.erro) {
-          setCepApiData(cepApiDataEmpty)
-          setError('cep',  { type:"custom", message:"Este CEP não existe" })
-          return 
-        }
+    const cepIsFilled = cepFormatted.length === 8
+    const cepIsValid = Boolean(Number(cepFormatted))
     
-        setCepApiData({
-          city: cepApiJson.localidade,
-          uf: cepApiJson.uf
-        })
-      } catch (error) {
-          console.log(error)
-          throw new Error(`Erro: ${error}`)
-      }
+    setValue("cep", cep, {shouldValidate: true})
 
-      clearErrors('cep')
-
-    } else {
+    if (!cepIsFilled || !cepIsValid) {
       setCepApiData(cepApiDataEmpty)
+      return
+    } 
+
+    const cepApiResponse = await fetch(`https://viacep.com.br/ws/${cepFormatted}/json/`)
+    const cepApiJson = await cepApiResponse.json()
+
+    if (cepApiJson.erro) {
+      setError('cep', { type:"custom", message:"Este CEP não existe" })
+      return
     }
 
+    setCepApiData({
+      city: cepApiJson.localidade,
+      uf: cepApiJson.uf
+    })
+
+    clearErrors('cep')
   }
 
   function handleCreateNewOrder(data: OrderAddressSchemaProps) {
@@ -94,7 +100,7 @@ export function AdressForm() {
               type="text" 
               placeholder='CEP' 
               {...register('cep')}
-              onChange={handleCepChange}
+              onBlur={handleCepBlur}
             />
             {errors.cep && <p>{errors.cep.message}</p>}
             <FormInputBase 
