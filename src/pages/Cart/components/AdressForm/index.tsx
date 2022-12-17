@@ -15,8 +15,9 @@ import { FocusEvent, useState } from 'react';
 const orderAddressValidationSchema = z.object({
   cep: z.string()
     .min(1, { message: 'Este campo é de preenchimento obrigatório' })
-    .max(8, { message: 'Este formato de CEP é inválido' })
-    .regex(new RegExp(/\d{5}[-.\s]?\d{3}/), { message: 'Este formato de CEP é inválido' }),
+    .regex(new RegExp(/\d{5}[-.\s]?\d{3}/), { message: 'Este formato de CEP é inválido' })
+    .length(8, { message: 'Este formato de CEP é inválido' })
+    ,
 
   street: z.string()
     .min(1, { message: 'Este campo é de preenchimento obrigatório' }),
@@ -47,7 +48,6 @@ export function AdressForm() {
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
   async function handleCepBlur(event: FocusEvent<HTMLInputElement>) {
-    clearErrors('cep')
     const cep = event.target.value
     const cepFormatted = cep.replace(/\D/g, '');
 
@@ -66,6 +66,7 @@ export function AdressForm() {
 
     if (cepApiJson.erro) {
       setError('cep', { type: "custom", message: "Este CEP não existe" })
+      setCepApiData(cepApiDataEmpty)
       return
     }
 
@@ -73,6 +74,8 @@ export function AdressForm() {
       city: cepApiJson.localidade,
       uf: cepApiJson.uf
     })
+
+    clearErrors('cep')
   }
 
   function handleCreateNewOrder(data: OrderAddressSchemaProps) {
