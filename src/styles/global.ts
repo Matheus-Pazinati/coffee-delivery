@@ -8,8 +8,8 @@ export const GlobalStyled = createGlobalStyle`
   }
 
   body {
-    background-color: ${({theme}) => theme.background};
-    color: ${({theme}) => theme['base-text']};
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme['base-text']};
     font-family: 'Roboto', sans-serif;
   }
   
@@ -37,4 +37,22 @@ export const GlobalStyled = createGlobalStyle`
   input {
     border: none;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000;
+  box-shadow: inset;
+  -webkit-box-shadow: 0 0 0px 40rem #EDEDED inset;
+}
 `
