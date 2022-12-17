@@ -101,10 +101,19 @@ export const FormContainer = styled.div`
 export const FormInputContainer = styled.div`
     @media (min-width: 750px) {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.75rem;
-      justify-content: center;
-  }
+    }
+`
+
+export const ErrorMessage = styled.p`
+  font-size: 0.725rem;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  font-weight: 700;
+  color: #D9042B;
+  margin: -0.35rem 0 0.4rem 0;
 `
 
 export const FormInputBase = styled.input<InputErrorProps>`
@@ -132,3 +141,4 @@ export const FormInputSmall = styled(FormInputBase)`
 export const FormInputVerySmall = styled(FormInputBase)`
   width: 3.5rem
 `
+
