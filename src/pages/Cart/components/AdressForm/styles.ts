@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { DefaultTheme, ThemeProvider, ThemeProviderComponent } from "styled-components";
+
+interface InputErrorProps {
+  isInputInvalid?: boolean;
+}
 
 export const FormContainer = styled.div`
   margin: 2.5rem 0;
@@ -103,10 +107,10 @@ export const FormInputContainer = styled.div`
   }
 `
 
-export const FormInputBase = styled.input`
+export const FormInputBase = styled.input<InputErrorProps>`
   padding: 0.75rem;
   background-color: ${({theme}) => theme["base-input"]};
-  border: 1px solid ${({theme}) => theme["base-button"]};
+  border: 1.5px solid ${({theme, isInputInvalid}) => isInputInvalid ? '#D9042B'  : theme["base-button"] };
   border-radius: 4px;
   width: 100%;
   margin-bottom: 1rem;

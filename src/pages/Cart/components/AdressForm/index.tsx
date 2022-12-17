@@ -47,15 +47,16 @@ export function AdressForm() {
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
   async function handleCepBlur(event: FocusEvent<HTMLInputElement>) {
+    clearErrors('cep')
     const cep = event.target.value
     const cepFormatted = cep.replace(/\D/g, '');
 
-    const cepIsFilled = cepFormatted.length === 8
     const cepIsValid = Boolean(Number(cepFormatted))
+    const cepIsFilled = cepFormatted.length === 8
     
     setValue("cep", cep, {shouldValidate: true})
 
-    if (!cepIsFilled || !cepIsValid) {
+    if (!cepIsValid || !cepIsFilled) {
       setCepApiData(cepApiDataEmpty)
       return
     } 
@@ -72,8 +73,6 @@ export function AdressForm() {
       city: cepApiJson.localidade,
       uf: cepApiJson.uf
     })
-
-    clearErrors('cep')
   }
 
   function handleCreateNewOrder(data: OrderAddressSchemaProps) {
@@ -101,12 +100,14 @@ export function AdressForm() {
               placeholder='CEP' 
               {...register('cep')}
               onBlur={handleCepBlur}
+              isInputInvalid={Boolean(errors.cep)}
             />
             {errors.cep && <p>{errors.cep.message}</p>}
             <FormInputBase 
               type="text" 
               placeholder='Rua'
               {...register('street')} 
+              isInputInvalid={Boolean(errors.street)}
             />
             {errors.street && <p>{errors.street.message}</p>}
             <FormInputContainer>
@@ -114,6 +115,7 @@ export function AdressForm() {
                 type="number" 
                 placeholder='Número' 
                 {...register('homeNumber')}
+                isInputInvalid={Boolean(errors.homeNumber)}
               />
               {errors.homeNumber && <p>{errors.homeNumber.message}</p>}
               <label htmlFor="complement">
@@ -122,6 +124,7 @@ export function AdressForm() {
                   id='complement' 
                   placeholder='Complemento' 
                   {...register('complement')}
+                  isInputInvalid={Boolean(errors.complement)}
                 />
                 <i>Opcional</i>
               </label>
@@ -131,6 +134,7 @@ export function AdressForm() {
                 type="text" 
                 placeholder='Bairro' 
                 {...register('district')}
+                isInputInvalid={Boolean(errors.district)}
               />
               {errors.district && <p>{errors.district.message}</p>}
               <FormInputBase 
