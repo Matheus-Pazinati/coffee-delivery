@@ -10,8 +10,8 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, WarningCircle } fr
 
 import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall, FormInputVerySmall, ErrorMessage } from './styles';
 import { FormTitle } from '../../styles';
-import { FocusEvent, useContext, useState } from 'react';
-import { OrderFormContext } from '../../../../context/OrderFormContext';
+import { FocusEvent, useContext } from 'react';
+import { OrderFormContext, PaymentMethods } from '../../../../context/OrderFormContext';
 
 const orderAddressValidationSchema = z.object({
   cep: z.string()
@@ -40,7 +40,10 @@ export function AdressForm() {
   const { 
     cepApiData,
     addValuesInCityAndUfFieldsByZipCode,
-    clearValuesInCityAndUfFields } = useContext(OrderFormContext)
+    clearValuesInCityAndUfFields,
+    paymentMethod,
+    changePaymentMethod
+  } = useContext(OrderFormContext)
 
   const { register, handleSubmit, setError, setValue, clearErrors, formState: { errors } } = useForm<OrderAddressSchemaProps>({
     resolver: zodResolver(orderAddressValidationSchema)
@@ -186,19 +189,22 @@ export function AdressForm() {
             className="ToggleContainer"
             type="single"
             aria-label="Escolha do método de pagamento"
-            defaultValue='credit'
+            value={paymentMethod}
+            onValueChange={(value: PaymentMethods) => {
+              changePaymentMethod(value)
+            }}
           >
-            <ToggleGroup.Item className='ToggleItem' value='Cartão de Crédito' aria-label='Cartão de crédito'>
+            <ToggleGroup.Item className='ToggleItem' value='credit' aria-label='Cartão de crédito'>
               <CreditCard size={16} color={colors.purple} />
               Cartão de Crédito
             </ToggleGroup.Item>
 
-            <ToggleGroup.Item className='ToggleItem' value='Cartão de Débito' aria-label='Cartão de débito'>
+            <ToggleGroup.Item className='ToggleItem' value='debt' aria-label='Cartão de débito'>
               <Bank size={16} color={colors.purple} />
               Cartão de Débito
             </ToggleGroup.Item>
 
-            <ToggleGroup.Item className='ToggleItem' value='Dinheiro' aria-label='Dinheiro'>
+            <ToggleGroup.Item className='ToggleItem' value='money' aria-label='Dinheiro'>
               <Money size={16} color={colors.purple} />
               Dinheiro
             </ToggleGroup.Item>

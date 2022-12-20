@@ -4,15 +4,19 @@ interface OrderFormContextProviderProps {
   children: ReactNode
 }
 
-interface cepApiDataProps {
+interface CepApiDataProps {
   city: string
   uf: string
 }
 
+export type PaymentMethods = "credit" | "debt" | "money"
+
 interface OrderFormContextProps {
-  cepApiData: cepApiDataProps
-  addValuesInCityAndUfFieldsByZipCode: (data: cepApiDataProps) => void
+  cepApiData: CepApiDataProps
+  addValuesInCityAndUfFieldsByZipCode: (data: CepApiDataProps) => void
   clearValuesInCityAndUfFields: () => void
+  paymentMethod: PaymentMethods
+  changePaymentMethod: (newValue: PaymentMethods) => void
 }
 
 export const OrderFormContext = createContext({} as OrderFormContextProps)
@@ -26,7 +30,9 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
 
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
-  function addValuesInCityAndUfFieldsByZipCode(data: cepApiDataProps) {
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>('credit')
+
+  function addValuesInCityAndUfFieldsByZipCode(data: CepApiDataProps) {
     setCepApiData(data)
   }
 
@@ -34,11 +40,17 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
     setCepApiData(cepApiDataEmpty)
   }
 
+  function changePaymentMethod(newValue: PaymentMethods) {
+    setPaymentMethod(newValue)
+  }
+
   return (
     <OrderFormContext.Provider value={{
       cepApiData,
       addValuesInCityAndUfFieldsByZipCode,
-      clearValuesInCityAndUfFields
+      clearValuesInCityAndUfFields,
+      paymentMethod,
+      changePaymentMethod
     }}>
       {children}
     </OrderFormContext.Provider>
