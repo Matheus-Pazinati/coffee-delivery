@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import { DefaultLayout } from '../src/layouts/DefaultLayout'
+import { OrderFormContextProvider } from './context/OrderFormContext'
 
 import { Cart } from './pages/Cart'
 import { Home } from './pages/Home'
@@ -11,8 +12,18 @@ export function AppRoutes() {
     <Routes>
       <Route path='/' element={<DefaultLayout />}>
         <Route path='/' element={<Home />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/order' element={<Order />} />
+          <Route path='/cart' element= {
+            <OrderFormContextProvider>
+              <Cart />
+            </OrderFormContextProvider>
+            } 
+          />
+          <Route path='/order' element= {
+            <OrderFormContextProvider>
+              <Order />
+            </OrderFormContextProvider>
+            } 
+          />
       </Route>
     </Routes>
   )
