@@ -10,7 +10,8 @@ import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, WarningCircle } fr
 
 import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall, FormInputVerySmall, ErrorMessage } from './styles';
 import { FormTitle } from '../../styles';
-import { FocusEvent, useState } from 'react';
+import { FocusEvent, useContext, useState } from 'react';
+import { OrderFormContext } from '../../../../context/OrderFormContext';
 
 const orderAddressValidationSchema = z.object({
   cep: z.string()
@@ -36,16 +37,14 @@ type OrderAddressSchemaProps = Zod.infer<typeof orderAddressValidationSchema>
 export function AdressForm() {
   const colors = useTheme()
 
+  const { 
+    cepApiData,
+    addValuesInCityAndUfFieldsByZipCode,
+    clearValuesInCityAndUfFields } = useContext(OrderFormContext)
+
   const { register, handleSubmit, setError, setValue, clearErrors, formState: { errors } } = useForm<OrderAddressSchemaProps>({
     resolver: zodResolver(orderAddressValidationSchema)
   })
-
-  const cepApiDataEmpty = {
-    city: "",
-    uf: ""
-  }
-
-  const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
   async function handleCepBlur(event: FocusEvent<HTMLInputElement>) {
     const cep = event.target.value
@@ -57,7 +56,7 @@ export function AdressForm() {
     setValue("cep", cep, { shouldValidate: true })
 
     if (!cepIsValid || !cepIsFilled) {
-      setCepApiData(cepApiDataEmpty)
+      clearValuesInCityAndUfFields()
       return
     }
 
@@ -66,11 +65,11 @@ export function AdressForm() {
 
     if (cepApiJson.erro) {
       setError('cep', { type: "custom", message: "Este CEP não existe" })
-      setCepApiData(cepApiDataEmpty)
+      clearValuesInCityAndUfFields()
       return
     }
 
-    setCepApiData({
+    addValuesInCityAndUfFieldsByZipCode({
       city: cepApiJson.localidade,
       uf: cepApiJson.uf
     })
