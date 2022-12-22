@@ -12,6 +12,7 @@ import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall, FormI
 import { FormTitle } from '../../styles';
 import { FocusEvent, useContext } from 'react';
 import { OrderFormContext, PaymentMethods } from '../../../../context/OrderFormContext';
+import { filterCep } from '../../../../functions/filterCep';
 
 const orderAddressValidationSchema = z.object({
   cep: z.string()
@@ -51,14 +52,13 @@ export function AdressForm() {
 
   async function handleCepBlur(event: FocusEvent<HTMLInputElement>) {
     const cep = event.target.value
-    const cepFormatted = cep.replace(/\D/g, '');
 
-    const cepIsValid = Boolean(Number(cepFormatted))
-    const cepIsFilled = cepFormatted.length === 8
+    const cepFormatted = cep.replace(/\D/g, '');
+    const cepIsFiltered = filterCep(cepFormatted)
 
     setValue("cep", cep, { shouldValidate: true })
 
-    if (!cepIsValid || !cepIsFilled) {
+    if (!cepIsFiltered) {
       clearValuesInCityAndUfFields()
       return
     }
