@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useNavigate } from 'react-router-dom'
 
 import { FormTitle } from "../../styles";
 import { CoffeeListContainer, CoffeeListContent, CoffeeListPrice } from "./styles";
@@ -10,7 +9,6 @@ import { SelectedCoffeesContext } from "../../../../context/CoffeeContext";
 import { convertCoffeePriceToString } from "../../../../functions/convertCoffeePriceToString";
 
 export function CoffeeList() {
-  const navigate = useNavigate()
   const { selectedCoffees } = useContext(SelectedCoffeesContext)
 
   const deliveryValue = 3.50;

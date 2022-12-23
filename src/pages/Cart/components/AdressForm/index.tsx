@@ -33,7 +33,7 @@ const orderAddressValidationSchema = z.object({
   district: z.string().min(1, { message: 'Este campo é de preenchimento obrigatório' }),
 })
 
-type OrderAddressSchemaProps = Zod.infer<typeof orderAddressValidationSchema>
+export type OrderAddressSchemaProps = Zod.infer<typeof orderAddressValidationSchema>
 
 export function AdressForm() {
   const colors = useTheme()
@@ -43,7 +43,8 @@ export function AdressForm() {
     addValuesInCityAndUfFieldsByZipCode,
     clearValuesInCityAndUfFields,
     paymentMethod,
-    changePaymentMethod
+    changePaymentMethod,
+    handleCreateNewOrder
   } = useContext(OrderFormContext)
 
   const { register, handleSubmit, setError, setValue, clearErrors, formState: { errors } } = useForm<OrderAddressSchemaProps>({
@@ -78,10 +79,6 @@ export function AdressForm() {
     })
 
     clearErrors('cep')
-  }
-
-  function handleCreateNewOrder(data: OrderAddressSchemaProps) {
-    console.log(data)
   }
 
   return (
