@@ -5,7 +5,9 @@ import { CartContainer } from "./styles";
 
 import { AdressForm } from "./components/AdressForm";
 import { CoffeeList } from "./components/CoffeeList";
-import { EmptyCart } from "./components/EmptyCart";
+import { ComponentNotFound } from "../../components/ComponentNotFound";
+
+import emptyCartImg from '../../assets/cd-empty-cart.png'
 
 export function Cart() {
   const { selectedCoffees } = useContext(SelectedCoffeesContext)
@@ -19,7 +21,10 @@ export function Cart() {
         </CartContainer> 
         : 
         <CartContainer>
-          <EmptyCart />
+          <ComponentNotFound 
+          description="Seu carrinho ainda está vazio." 
+          image={emptyCartImg}
+          />
         </CartContainer>
       }  
     </div>

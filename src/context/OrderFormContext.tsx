@@ -31,6 +31,7 @@ interface OrderFormContextProps {
   changePaymentMethod: (newValue: PaymentMethods) => void
   handleCreateNewOrder: (data: OrderAddressSchemaProps) => void
   valuesOfControlledFormFields: ControlledFieldsValuesProps
+  isOrderConfirmed: boolean
 }
 
 export const OrderFormContext = createContext({} as OrderFormContextProps)
@@ -49,6 +50,8 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>('credit')
+
+  const [isOrderConfirmed, setIsOrderConfirmed] = useState(false)
 
   const [valuesOfControlledFormFields, setValuesOfControlledFormFields] = useState<ControlledFieldsValuesProps>({
     street: '',
@@ -70,6 +73,7 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
   }
 
   function handleCreateNewOrder(data: OrderAddressSchemaProps) {
+    setIsOrderConfirmed(true)
     setValuesOfControlledFormFields({
       street: data.street,
       homeNumber: data.homeNumber,
@@ -88,7 +92,8 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
       paymentMethod,
       changePaymentMethod,
       handleCreateNewOrder,
-      valuesOfControlledFormFields
+      valuesOfControlledFormFields,
+      isOrderConfirmed
     }}>
       {children}
     </OrderFormContext.Provider>
