@@ -1,6 +1,9 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 import { OrderAddressSchemaProps } from "../pages/Cart/components/AdressForm";
+
+import { useNavigate } from 'react-router-dom'
+import { SelectedCoffeesContext } from "./CoffeeContext";
 
 interface OrderFormContextProviderProps {
   children: ReactNode
@@ -34,10 +37,14 @@ export const OrderFormContext = createContext({} as OrderFormContextProps)
 
 export function OrderFormContextProvider({ children }: OrderFormContextProviderProps) {
 
+  const navigate = useNavigate()
+
   const cepApiDataEmpty = {
     city: "",
     uf: ""
   }
+
+  const { selectedCoffees } = useContext(SelectedCoffeesContext)
 
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
@@ -69,6 +76,7 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
       complement: data.complement,
       district: data.district
     })
+    navigate("/order")
   }
 
   return (

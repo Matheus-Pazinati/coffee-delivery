@@ -17,8 +17,9 @@ import { filterCep } from '../../../../functions/filterCep';
 const orderAddressValidationSchema = z.object({
   cep: z.string()
     .min(1, { message: 'Este campo é de preenchimento obrigatório' })
+    .max(9, { message: 'Este formato de CEP é inválido' })
     .regex(new RegExp(/\d{5}[-.\s]?\d{3}/), { message: 'Este formato de CEP é inválido' })
-    .length(8, { message: 'Este formato de CEP é inválido' })
+    .refine((val) => val.replace(/\D/g, ''))
     ,
 
   street: z.string()

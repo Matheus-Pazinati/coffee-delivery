@@ -5,8 +5,18 @@ import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import confirmImg from '../../assets/cd-delivery-confirmed.png'
 
 import { OrderContainer, OrderContent, OrderStatus } from "./styles";
+import { useContext } from "react";
+import { OrderFormContext } from "../../context/OrderFormContext";
 
 export function Order() {
+
+  const paymentMethodView = {
+    credit: "Cartão de Crédito",
+    debt: "Cartão de Débito",
+    money: "Dinheiro"
+  }
+
+  const { valuesOfControlledFormFields, paymentMethod, cepApiData } = useContext(OrderFormContext)
   return (
     <OrderContainer>
         <h2>Uhu! Pedido confirmado</h2>
@@ -16,7 +26,9 @@ export function Order() {
             <div>
               <RoundedIcon Icon={MapPin} bgColor={'purple'} />
               <p>
-                Entrega em <span> Rua João Daniel Martinelli, 102</span> <br /> Farrapos - Porto Alegre, RS
+                Entrega em <span> 
+                  {valuesOfControlledFormFields.street}, {valuesOfControlledFormFields.homeNumber} {valuesOfControlledFormFields.complement}
+                </span> <br /> {valuesOfControlledFormFields.district} - {cepApiData.city}, {cepApiData.uf}
               </p>
             </div>
             <div>
@@ -30,11 +42,11 @@ export function Order() {
               <RoundedIcon Icon={CurrencyDollar} bgColor={'yellow-dark'} />
               <p>
                 Pagamento na entrega <br />
-                <span>Cartão de Crédito</span>
+                <span>{paymentMethodView[paymentMethod]}</span>
               </p>
             </div>
           </OrderStatus>
-            <img src={confirmImg} alt="" />
+            <img src={confirmImg} alt="Pessoa sentada em uma motocicleta com uma entrega para realizar" />
           </OrderContent>
     </OrderContainer>
   )
