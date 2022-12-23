@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const EmptyCartContainer = styled.div`
+export const NotFoundContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
