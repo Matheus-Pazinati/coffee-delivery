@@ -1,18 +1,18 @@
-import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import { FocusEvent, useContext } from 'react';
 
-import { useTheme } from 'styled-components';
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, WarningCircle } from 'phosphor-react'
 
 import * as z from 'zod'
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
+import { filterCep } from '../../../../functions/filterCep';
 
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, WarningCircle } from 'phosphor-react'
-
+import { useTheme } from 'styled-components';
 import { FormInputContainer, FormContainer, FormInputBase, FormInputSmall, FormInputVerySmall, ErrorMessage } from './styles';
 import { FormTitle } from '../../styles';
-import { FocusEvent, useContext } from 'react';
+
 import { OrderFormContext, PaymentMethods } from '../../../../context/OrderFormContext';
-import { filterCep } from '../../../../functions/filterCep';
 
 const orderAddressValidationSchema = z.object({
   cep: z.string()

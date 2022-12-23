@@ -53,6 +53,12 @@ export function coffeesReducer(state: SelectedCoffee[], action: any) {
         draft.splice(coffeeOnCartIndex, 1)
       })
     }
+
+    case ActionTypes.CLEAR_COFFEE_CART: {
+      return produce(state, (draft) => {
+        draft.length = 0
+      })
+    }
   }
   return state
 }

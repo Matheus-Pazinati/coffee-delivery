@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useReducer } from 'react'
 import { 
   addNewCoffeeOnCartAction, 
+  clearCoffeeCartAction, 
   decrementCoffeeQuantityAction, 
   incrementCoffeeQuantityAction, 
   removeCoffeeFromCartAction} from '../reducer/coffee/actions';
@@ -21,6 +22,7 @@ interface SelectedCoffeesContextProps {
   removeCoffeeFromCart: (id: string) => void;
   incrementCoffeeQuantity: (id: string) => void;
   decrementCoffeeQuantity: (id: string) => void;
+  clearCoffeeCart: () => void
 }
 
 interface CoffeeContextProviderProps {
@@ -48,13 +50,19 @@ export function CoffeeContextProvider({children}: CoffeeContextProviderProps) {
   function removeCoffeeFromCart(id: string) {
     dispatch(removeCoffeeFromCartAction(id))
   }
+
+  function clearCoffeeCart(id?: string) {
+    dispatch(clearCoffeeCartAction(id))
+  }
+
   return (
     <SelectedCoffeesContext.Provider value={{
       selectedCoffees,
       addNewCoffeeOnCart,
       incrementCoffeeQuantity,
       decrementCoffeeQuantity,
-      removeCoffeeFromCart
+      removeCoffeeFromCart,
+      clearCoffeeCart
     }}>
       {children}
     </SelectedCoffeesContext.Provider>
