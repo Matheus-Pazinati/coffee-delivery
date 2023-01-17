@@ -10,10 +10,10 @@ import { useContext } from "react";
 import { OrderFormContext } from "../../context/OrderFormContext";
 import { useNavigate } from "react-router-dom";
 import { ComponentNotFound } from "../../components/ComponentNotFound";
+import { SelectedCoffeesContext } from "../../context/CoffeeContext";
+import { convertCoffeePriceToString } from "../../functions/convertCoffeePriceToString";
 
 export function Order() {
-
-  const navigate = useNavigate()
 
   const paymentMethodView = {
     credit: "Cartão de Crédito",
@@ -21,7 +21,13 @@ export function Order() {
     money: "Dinheiro"
   }
 
-  const { valuesOfControlledFormFields, paymentMethod, cepApiData, isOrderConfirmed } = useContext(OrderFormContext)
+  const { 
+    valuesOfControlledFormFields,
+    paymentMethod,
+    cepApiData,
+    isOrderConfirmed,
+    moneyChange } = useContext(OrderFormContext)
+
   if (isOrderConfirmed) {
     return (
       <OrderContainer>
@@ -49,6 +55,9 @@ export function Order() {
               <p>
                 Pagamento na entrega <br />
                 <span>{paymentMethodView[paymentMethod]}</span>
+                {!!moneyChange && (
+                <span className="change">Troco: R$ {convertCoffeePriceToString((moneyChange), 1)}</span>
+              )}
               </p>
             </div>
           </OrderStatus>

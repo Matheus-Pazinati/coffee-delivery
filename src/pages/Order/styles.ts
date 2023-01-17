@@ -78,5 +78,8 @@ export const OrderStatus = styled.div`
     span {
       font-weight: bold;
     }
+    .change {
+      display: block;
+    }
   }
 `

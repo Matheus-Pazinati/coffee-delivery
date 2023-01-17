@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import * as Checkbox from '@radix-ui/react-checkbox';
 
 import { FormTitle } from "../../styles";
-import { CheckboxRoot, CoffeeListContainer, CoffeeListContent, CoffeeListPrice, MoneyChangeContainer } from "./styles";
+import { ChangeInputContainer, CheckboxRoot, CoffeeListContainer, CoffeeListContent, CoffeeListPrice, MoneyChangeContainer } from "./styles";
 import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
 
 import { Check } from 'phosphor-react'
@@ -14,18 +14,12 @@ import { convertCoffeePriceToString } from "../../../../functions/convertCoffeeP
 import { OrderFormContext } from "../../../../context/OrderFormContext";
 
 export function CoffeeList() {
-  const { selectedCoffees } = useContext(SelectedCoffeesContext)
-  const { paymentMethod } = useContext(OrderFormContext)
+  const { selectedCoffees, totalPriceOfCoffees } = useContext(SelectedCoffeesContext)
+  const { paymentMethod, handleMoneyChange, changeError } = useContext(OrderFormContext)
 
   const deliveryValue = 3.50;
 
-  const coffeesPrices = selectedCoffees.map((coffee) => {
-    return coffee.price * coffee.quantity
-  })
-
-  const totalPriceOfCoffees = coffeesPrices.reduce((total, current) => {
-    return total + current
-  }, 0)
+  const [isMoneyChangeChecked, setIsMoneyChangeChecked] = useState(false)
 
   return (
     <CoffeeListContainer>
@@ -54,7 +48,12 @@ export function CoffeeList() {
         </CoffeeListPrice>
         {paymentMethod === "money" && (
           <MoneyChangeContainer>
-            <CheckboxRoot id="moneyChange">
+            <CheckboxRoot 
+              id="moneyChange"
+              checked={isMoneyChangeChecked} 
+              onCheckedChange={() => {
+                setIsMoneyChangeChecked(!isMoneyChangeChecked)
+              }}>
               <Checkbox.Indicator>
                 <Check size={24} weight={"bold"} color={"#4B2995"} />
               </Checkbox.Indicator>
@@ -62,10 +61,22 @@ export function CoffeeList() {
             <label htmlFor="moneyChange">Precisa de troco para o pagamento?</label>
           </MoneyChangeContainer>
         )}
+        {isMoneyChangeChecked && (
+          <ChangeInputContainer wrongValue={changeError}>
+            <input 
+              type="number" 
+              id="change" 
+              placeholder="Qual o valor que você irá pagar?"
+              onBlur={handleMoneyChange}
+            />
+            {changeError ? <p className="changeError">O valor informado é menor que o total da compra.</p> : null}
+          </ChangeInputContainer>
+        )}
         <button
           type="submit"
           form="addressForm"
           className="OrderConfirm"
+          disabled={changeError}
         >
           Confirmar pedido
         </button>

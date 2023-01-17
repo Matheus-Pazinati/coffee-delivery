@@ -22,7 +22,8 @@ interface SelectedCoffeesContextProps {
   removeCoffeeFromCart: (id: string) => void;
   incrementCoffeeQuantity: (id: string) => void;
   decrementCoffeeQuantity: (id: string) => void;
-  clearCoffeeCart: () => void
+  clearCoffeeCart: () => void;
+  totalPriceOfCoffees: number;
 }
 
 interface CoffeeContextProviderProps {
@@ -55,6 +56,14 @@ export function CoffeeContextProvider({children}: CoffeeContextProviderProps) {
     dispatch(clearCoffeeCartAction(id))
   }
 
+  const coffeesPrices = selectedCoffees.map((coffee) => {
+    return coffee.price * coffee.quantity
+  })
+
+  const totalPriceOfCoffees = coffeesPrices.reduce((total, current) => {
+    return total + current
+  }, 0)
+
   return (
     <SelectedCoffeesContext.Provider value={{
       selectedCoffees,
@@ -62,7 +71,8 @@ export function CoffeeContextProvider({children}: CoffeeContextProviderProps) {
       incrementCoffeeQuantity,
       decrementCoffeeQuantity,
       removeCoffeeFromCart,
-      clearCoffeeCart
+      clearCoffeeCart,
+      totalPriceOfCoffees
     }}>
       {children}
     </SelectedCoffeesContext.Provider>

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { ChangeEvent, createContext, ReactNode, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { OrderAddressSchemaProps } from "../pages/Cart/components/AdressForm";
@@ -32,6 +32,9 @@ interface OrderFormContextProps {
   handleCreateNewOrder: (data: OrderAddressSchemaProps) => void
   valuesOfControlledFormFields: ControlledFieldsValuesProps
   isOrderConfirmed: boolean
+  moneyChange: number | undefined;
+  handleMoneyChange: (event: any) => void
+  changeError: boolean
 }
 
 export const OrderFormContext = createContext({} as OrderFormContextProps)
@@ -45,13 +48,26 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
 
   const navigate = useNavigate()
 
-  const { clearCoffeeCart } = useContext(SelectedCoffeesContext)
+  const { clearCoffeeCart, totalPriceOfCoffees } = useContext(SelectedCoffeesContext)
 
   const [cepApiData, setCepApiData] = useState(cepApiDataEmpty)
 
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>('credit')
 
+  const [moneyChange, setMoneyChange] = useState<number | undefined>(undefined)
+
   const [isOrderConfirmed, setIsOrderConfirmed] = useState(false)
+
+  const [changeError, setChangeError] = useState(false)
+
+  function handleMoneyChange(event: ChangeEvent<HTMLInputElement>) {
+    if (Number(event.target.value) < totalPriceOfCoffees + 3.50) {
+      setChangeError(true)
+      return
+    }
+    setChangeError(false)
+    setMoneyChange(Number(event.target.value) - (totalPriceOfCoffees + 3.50))
+  }
 
   const [valuesOfControlledFormFields, setValuesOfControlledFormFields] = useState<ControlledFieldsValuesProps>({
     street: '',
@@ -93,7 +109,10 @@ export function OrderFormContextProvider({ children }: OrderFormContextProviderP
       changePaymentMethod,
       handleCreateNewOrder,
       valuesOfControlledFormFields,
-      isOrderConfirmed
+      isOrderConfirmed,
+      moneyChange,
+      handleMoneyChange,
+      changeError
     }}>
       {children}
     </OrderFormContext.Provider>
