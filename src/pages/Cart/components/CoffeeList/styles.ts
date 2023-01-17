@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as Checkbox from '@radix-ui/react-checkbox';
 
 export const CoffeeListContainer = styled.div`
   margin-top: 2.5rem;
@@ -46,6 +47,26 @@ export const CoffeeListContent = styled.div`
       background-color: ${({theme}) => theme["yellow-dark"]};
     }
   }
+`
+
+export const MoneyChangeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  label {
+    color: ${({theme}) => theme["base-text"]};
+  }
+`
+
+export const CheckboxRoot = styled(Checkbox.Root)`
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({theme}) => theme["base-hover"]};
+  border-radius: 5px;
 `
 
 export const CoffeeListPrice = styled.div`

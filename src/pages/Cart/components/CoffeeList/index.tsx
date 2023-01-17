@@ -1,18 +1,24 @@
 import { useContext } from "react";
 
+import * as Checkbox from '@radix-ui/react-checkbox';
+
 import { FormTitle } from "../../styles";
-import { CoffeeListContainer, CoffeeListContent, CoffeeListPrice } from "./styles";
-import { BoughtCoffeeCard, CoffeeCartCardProps } from "../BoughtCoffeeCard";
+import { CheckboxRoot, CoffeeListContainer, CoffeeListContent, CoffeeListPrice, MoneyChangeContainer } from "./styles";
+import { BoughtCoffeeCard } from "../BoughtCoffeeCard";
+
+import { Check } from 'phosphor-react'
 
 import { SelectedCoffeesContext } from "../../../../context/CoffeeContext";
 
 import { convertCoffeePriceToString } from "../../../../functions/convertCoffeePriceToString";
+import { OrderFormContext } from "../../../../context/OrderFormContext";
 
 export function CoffeeList() {
   const { selectedCoffees } = useContext(SelectedCoffeesContext)
+  const { paymentMethod } = useContext(OrderFormContext)
 
   const deliveryValue = 3.50;
-  
+
   const coffeesPrices = selectedCoffees.map((coffee) => {
     return coffee.price * coffee.quantity
   })
@@ -35,7 +41,7 @@ export function CoffeeList() {
         <CoffeeListPrice>
           <p>
             Total de itens
-            <span>R$ { convertCoffeePriceToString(totalPriceOfCoffees, 1) }</span>
+            <span>R$ {convertCoffeePriceToString(totalPriceOfCoffees, 1)}</span>
           </p>
           <p>
             Entrega
@@ -46,9 +52,19 @@ export function CoffeeList() {
             <span>R$ {convertCoffeePriceToString(totalPriceOfCoffees + deliveryValue, 1)}</span>
           </p>
         </CoffeeListPrice>
-        <button 
-          type="submit" 
-          form="addressForm" 
+        {paymentMethod === "money" && (
+          <MoneyChangeContainer>
+            <CheckboxRoot id="moneyChange">
+              <Checkbox.Indicator>
+                <Check size={24} weight={"bold"} color={"#4B2995"} />
+              </Checkbox.Indicator>
+            </CheckboxRoot>
+            <label htmlFor="moneyChange">Precisa de troco para o pagamento?</label>
+          </MoneyChangeContainer>
+        )}
+        <button
+          type="submit"
+          form="addressForm"
           className="OrderConfirm"
         >
           Confirmar pedido
