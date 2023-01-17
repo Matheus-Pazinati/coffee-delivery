@@ -29,7 +29,7 @@
 <br>
 <h2>📌 Funcionalidades a serem implementadas</h2>
 <ul>
-  <li>Incluir funcionalidade, onde caso a opção de pagamento tenha sido dinheiro, perguntar se há necessidade de troco, e caso necessite, para qual valor, e mostrar este cálculo na página de Confirmação do Pedido</li>
+  <li>Incluir funcionalidade, onde caso a opção de pagamento tenha sido dinheiro, perguntar se há necessidade de troco, e caso necessite, para qual valor, e mostrar este cálculo na página de Confirmação do Pedido - Ok ✔️</li>
 </ul>
 <br>
 <h2>🔖 Layout</h2>
