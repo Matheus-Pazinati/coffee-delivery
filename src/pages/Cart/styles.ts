@@ -6,6 +6,8 @@ export const CartContainer = styled.main`
     align-items: flex-start;
     gap: 2rem;
     padding: 0 10rem;
+    max-width: 1500px;
+    margin: 0 auto;
   };  
 `
 
