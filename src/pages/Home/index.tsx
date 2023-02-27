@@ -1,12 +1,14 @@
 import { CoffeeMenu } from "./components/CoffeeMenu";
 import { Header } from "./components/Header";
 
+import { HomeContainer } from './styles'
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export function Home() {
   return (
-    <main>
+    <HomeContainer>
       <Header />
       <CoffeeMenu />
       <ToastContainer
@@ -20,6 +22,6 @@ export function Home() {
         draggable
         theme="colored"
       />
-    </main>
+    </HomeContainer>
   )
 }

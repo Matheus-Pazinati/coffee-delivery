@@ -3,9 +3,13 @@ import styled from "styled-components";
 import bannerImg from '../../../../assets/cd-banner.png'
 import bannerBackground from '../../../../assets/cd-banner-background.png'
 
+export const HeaderWrapper = styled.div`
+  background: url(${bannerBackground});
+  width: 100%;
+`
+
 export const HeaderContainer = styled.header`
   padding: 2rem 0;
-  background: url(${bannerBackground});
 
   @media (min-width: 750px) {
     display: flex;
