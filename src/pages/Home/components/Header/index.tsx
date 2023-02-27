@@ -2,7 +2,7 @@ import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
 
 import { RoundedIcon } from '../../../../components/RoundedIcon'
 
-import { BannerImage, HeaderContainer, HeaderContentContainer } from './styles'
+import { BannerImage, HeaderContainer, HeaderContentContainer, HeaderWrapper } from './styles'
 
 export function Header() {
   return (
