@@ -9,6 +9,8 @@ export const OrderContainer = styled.section`
 
   @media (min-width: 1350px) {
     padding: 2rem 10rem;
+    max-width: 1500px;
+    margin: 0 auto;
   }
 
   h2 {
